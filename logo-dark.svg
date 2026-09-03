@@ -1,0 +1,21 @@
+<svg width="440" height="120" viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D6006E"/>
+      <stop offset="1" stop-color="#6D28D9"/>
+    </linearGradient>
+  </defs>
+  <rect width="440" height="120" fill="#130A24"/>
+  <g transform="translate(20,20)">
+    <rect width="80" height="80" rx="20" fill="url(#g)"/>
+    <path d="M40 15 L58.5 22.5 V37 C58.5 51.5 51 63 40 67.5 C29 63 21.5 51.5 21.5 37 V22.5 Z" fill="none" stroke="#fff" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="30" y2="45" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="40" y1="30" x2="50" y2="45" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    <line x1="30" y1="45" x2="50" y2="45" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="40" cy="30" r="4" fill="#fff"/>
+    <circle cx="30" cy="45" r="4" fill="#fff"/>
+    <circle cx="50" cy="45" r="4" fill="#fff"/>
+  </g>
+  <text x="118" y="70" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="34" font-weight="800" fill="#ffffff" letter-spacing="-0.5">Dev4Caustaza</text>
+  <text x="120" y="94" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="2.2" fill="#B794F6">AI · CLOUD · CYBERSECURITY</text>
+</svg>
