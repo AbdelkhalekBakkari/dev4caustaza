@@ -46,6 +46,7 @@
 
   *{ box-sizing:border-box; }
   html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  section[id]{ scroll-margin-top:84px; }
 
   body{
     margin:0;
@@ -120,6 +121,15 @@
     transition:color .15s;
   }
   .nav-links a:hover{ color:#fff; }
+  .nav-links a.active:not(.nav-cta):not(.lang-switch){ color:#fff; position:relative; }
+  .nav-links a.active:not(.nav-cta):not(.lang-switch)::after{
+    content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; border-radius:2px;
+    background:var(--grad);
+  }
+  @media (max-width:860px){
+    .nav-links a.active:not(.nav-cta):not(.lang-switch)::after{ display:none; }
+    .nav-links a.active:not(.nav-cta):not(.lang-switch){ color:var(--magenta); }
+  }
   .nav-cta{
     padding:11px 20px; border-radius:9px; background:#fff; color:var(--purple-dk)!important;
     font-weight:700!important; font-size:13.5px!important;
@@ -315,7 +325,7 @@
   }
 
   /* ---------------- STACK ---------------- */
-  .stack{ padding:128px 0; background:#fff; }
+  .stack{ padding:128px 0; background:linear-gradient(180deg,#FBF9FF,#FAF8FE); }
   .stack-providers{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:0 0 48px; }
   .stack-provider{
     font-family:var(--mono); font-size:14px; font-weight:700; letter-spacing:.02em;
@@ -325,9 +335,9 @@
   .stack-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
   @media (max-width:900px){ .stack-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:560px){ .stack-grid{ grid-template-columns:1fr; } }
-  .stack-group{ padding:26px 22px; border-radius:16px; border:1px solid var(--line); transition:border-color .2s, box-shadow .2s, transform .2s; }
+  .stack-group{ padding:26px 22px; border-radius:16px; background:#fff; border:1px solid var(--line); transition:border-color .2s, box-shadow .2s, transform .2s; }
   .stack-group:hover{ border-color:#DED2FA; box-shadow:0 20px 40px -24px rgba(76,31,184,.25); transform:translateY(-4px); }
-  .stack-group h4{ font-size:15px; font-weight:800; margin:0 0 16px; letter-spacing:-.005em; }
+  .stack-group h3{ font-size:15px; font-weight:800; margin:0 0 16px; letter-spacing:-.005em; }
   .stack-group .service-tags span{
     background:var(--purple-lt); border:1px solid #ECE3FB; color:var(--purple-dk);
   }
@@ -370,10 +380,16 @@
   .subul-card.jobs a.btn{ background:#fff; color:#C4005F; box-shadow:none; }
 
   .traction{
-    margin-top:44px; padding-top:40px; border-top:1px solid var(--line);
-    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center;
+    margin-top:48px; padding:40px 32px; border-radius:22px;
+    background:linear-gradient(155deg,#F8F5FF,#FDF1F7 130%); border:1px solid #ECE3FB;
+    box-shadow:0 30px 60px -34px rgba(76,31,184,.25);
   }
-  @media (max-width:600px){ .traction{ grid-template-columns:1fr; gap:28px; } }
+  .traction-label{
+    display:block; text-align:center; font-family:var(--mono); font-size:11.5px; font-weight:600;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--purple); margin:0 0 28px;
+  }
+  .traction-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center; }
+  @media (max-width:600px){ .traction-row{ grid-template-columns:1fr; gap:28px; } }
   .traction-stat h3{
     font-family:var(--mono); font-size:38px; font-weight:700; letter-spacing:-.02em; margin:0 0 6px;
     background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -418,7 +434,7 @@
     width:44px; height:44px; border-radius:12px; background:var(--purple-lt);
     display:flex; align-items:center; justify-content:center; margin-bottom:16px;
   }
-  .why-card h4{ font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.005em; }
+  .why-card h3{ font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.005em; }
   .why-card p{ font-size:13.8px; color:var(--body); margin:0; }
 
   /* ---------------- CONTACT ---------------- */
@@ -591,9 +607,12 @@
         </div>
       </div>
       <div class="traction" data-reveal>
-        <div class="traction-stat"><h3>320</h3><p>Utilisateurs SUBUL</p></div>
-        <div class="traction-stat"><h3>457</h3><p>Labs complétés</p></div>
-        <div class="traction-stat"><h3>14</h3><p>Entreprises engagées</p></div>
+        <span class="traction-label">SUBUL en chiffres</span>
+        <div class="traction-row">
+          <div class="traction-stat"><h3>320</h3><p>Utilisateurs SUBUL</p></div>
+          <div class="traction-stat"><h3>457</h3><p>Labs complétés</p></div>
+          <div class="traction-stat"><h3>14</h3><p>Entreprises engagées</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -652,19 +671,19 @@
       </div>
       <div class="stack-grid">
         <div class="stack-group" data-reveal>
-          <h4>Intelligence Artificielle</h4>
+          <h3>Intelligence Artificielle</h3>
           <div class="service-tags"><span>RAG</span><span>LLM Agents</span><span>LangGraph</span><span>CrewAI</span><span>MCP</span><span>Whisper</span><span>Vision-Language Models</span><span>Vector DB</span></div>
         </div>
         <div class="stack-group" data-reveal>
-          <h4>Cloud &amp; DevOps</h4>
+          <h3>Cloud &amp; DevOps</h3>
           <div class="service-tags"><span>Docker</span><span>Kubernetes (Helm, k3s, ArgoCD)</span><span>Terraform</span><span>Ansible</span><span>CI/CD</span><span>Grafana</span><span>Prometheus</span></div>
         </div>
         <div class="stack-group" data-reveal>
-          <h4>Data Engineering</h4>
+          <h3>Data Engineering</h3>
           <div class="service-tags"><span>Apache Kafka</span><span>Apache Spark</span><span>dbt</span><span>Airflow</span><span>PostgreSQL</span><span>Apache Superset</span></div>
         </div>
         <div class="stack-group" data-reveal>
-          <h4>Cybersécurité</h4>
+          <h3>Cybersécurité</h3>
           <div class="service-tags"><span>SIEM (Wazuh)</span><span>MITRE ATT&amp;CK</span><span>Zero Trust</span><span>HashiCorp Vault</span><span>Keycloak / SSO</span></div>
         </div>
       </div>
@@ -704,25 +723,25 @@
         <div class="why-card" data-reveal>
           <div class="why-num">01</div>
           <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C1FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg></div>
-          <h4>Rapidité d'exécution</h4>
+          <h3>Rapidité d'exécution</h3>
           <p>Des équipes réduites, autonomes, qui livrent vite et itèrent avec vous.</p>
         </div>
         <div class="why-card" data-reveal>
           <div class="why-num">02</div>
           <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C1FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z"/></svg></div>
-          <h4>Sécurité par design</h4>
+          <h3>Sécurité par design</h3>
           <p>La cybersécurité n'est pas une option ajoutée après coup, elle fait partie de chaque livrable.</p>
         </div>
         <div class="why-card" data-reveal>
           <div class="why-num">03</div>
           <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C1FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
-          <h4>IA appliquée, pas gadget</h4>
+          <h3>IA appliquée, pas gadget</h3>
           <p>On n'ajoute de l'IA que là où elle résout un vrai problème métier.</p>
         </div>
         <div class="why-card" data-reveal>
           <div class="why-num">04</div>
           <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4C1FB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h4>Impact sur le talent local</h4>
+          <h3>Impact sur le talent local</h3>
           <p>Avec SUBUL, chaque mission technique nourrit aussi la formation du talent tunisien.</p>
         </div>
       </div>
@@ -850,6 +869,23 @@ if ("IntersectionObserver" in window){
   document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
 } else {
   document.querySelectorAll("[data-reveal]").forEach(el => el.classList.add("in"));
+}
+
+/* scroll-spy: highlight the nav link for the section in view */
+if ("IntersectionObserver" in window){
+  const navLinkByHref = {};
+  navLinks.querySelectorAll("a[href^='#']").forEach(a => { navLinkByHref[a.getAttribute("href")] = a; });
+  const spySections = [...document.querySelectorAll("main section[id]")];
+  const setActive = (id) => {
+    Object.values(navLinkByHref).forEach(a => a.classList.remove("active"));
+    const link = navLinkByHref["#" + id];
+    if (link) link.classList.add("active");
+  };
+  const spy = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible.length) setActive(visible[0].target.id);
+  }, { rootMargin: "-84px 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
+  spySections.forEach(s => spy.observe(s));
 }
 </script>
 </body>
