@@ -80,6 +80,13 @@
   }
   .eyebrow::before{ content:""; width:16px; height:1.5px; background:var(--magenta); border-radius:2px; }
 
+  .product-badge{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:8px 16px 8px 14px; border-radius:999px; margin-bottom:16px;
+    background:rgba(34,211,201,.1); border:1px solid rgba(34,211,201,.35);
+    font-family:var(--mono); font-size:12px; font-weight:600; color:#7CE8DF; letter-spacing:.01em;
+  }
+
   /* ---------------- REVEAL ---------------- */
   [data-reveal]{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
   [data-reveal].in{ opacity:1; transform:none; }
@@ -443,8 +450,8 @@
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">À propos</a></li>
-      <li><a href="#services">Expertises</a></li>
       <li><a href="#subul">SUBUL</a></li>
+      <li><a href="#services">Expertises</a></li>
       <li><a href="#xp">SUBUL XP</a></li>
       <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
       <li><a href="en/index.html" class="lang-switch">EN</a></li>
@@ -460,9 +467,10 @@
     <div class="hero-grid-lines" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div data-reveal>
+        <span class="product-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22D3C9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>Startup produit · SaaS-first, pas une agence de services</span>
         <span class="eyebrow" style="color:#FF9FCB;">Dev4Caustaza · Tunisie</span>
-        <h1>On construit l'infrastructure <em>intelligente</em> de demain.</h1>
-        <p class="lead">Dev4Caustaza est une startup tunisienne spécialisée en Intelligence Artificielle, Cloud Computing et Cybersécurité. Nous concevons des systèmes robustes pour les entreprises — et SUBUL, notre plateforme SaaS EdTech &amp; JobTech, pour former et connecter les talents tech de demain.</p>
+        <h1>On construit <em>SUBUL</em>, la plateforme qui forme et connecte les talents tech.</h1>
+        <p class="lead">Dev4Caustaza est une startup produit tunisienne. SUBUL — notre plateforme SaaS EdTech &amp; JobTech — est propulsée par notre propre expertise en Intelligence Artificielle accélérée par GPU, Cloud Computing et Cybersécurité.</p>
         <div class="hero-actions">
           <a href="#subul" class="btn btn-primary">Découvrir SUBUL</a>
           <a href="#contact" class="btn btn-ghost">Discuter d'un projet</a>
@@ -516,13 +524,50 @@
     </div>
   </section>
 
+  <!-- ============ SUBUL ============ -->
+  <section class="subul" id="subul">
+    <div class="container">
+      <div class="subul-head" data-reveal>
+        <div>
+          <span class="eyebrow" style="color:var(--magenta);">Notre produit</span>
+          <h2>SUBUL — notre plateforme SaaS, propriétaire de bout en bout.</h2>
+          <p>Dev4Caustaza est une startup produit&nbsp;: SUBUL est le logiciel que nous construisons et possédons, pas une prestation livrée à un client. Une seule plateforme pour monter en compétences sur les métiers tech recherchés, puis se connecter directement aux entreprises qui recrutent.</p>
+        </div>
+      </div>
+      <div class="subul-grid">
+        <div class="subul-card learn" data-reveal>
+          <span class="tag">SUBUL · EdTech</span>
+          <h3>SUBUL Learn</h3>
+          <p>Des parcours pratiques et certifiants en IA, Cloud et Cybersécurité, pensés pour amener rapidement du niveau débutant à l'employabilité.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Parcours guidés par domaine et niveau</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Labs pratiques sur des cas réels</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Suivi de progression et badges de compétences</li>
+          </ul>
+          <a href="#xp" class="btn">Voir les labs SUBUL XP</a>
+        </div>
+        <div class="subul-card jobs" data-reveal>
+          <span class="tag">SUBUL · JobTech</span>
+          <h3>SUBUL Jobs</h3>
+          <p>Un matching intelligent entre talents formés sur SUBUL Learn et entreprises tech en recherche de profils opérationnels.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Profils vérifiés par la pratique, pas que par CV</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Matching par compétences et disponibilité</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Un pipeline de recrutement simplifié pour les entreprises</li>
+          </ul>
+          <a href="#contact" class="btn">Recruter via SUBUL</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SERVICES ============ -->
   <section class="services grain" id="services">
     <div class="container">
       <div class="sec-head on-dark" data-reveal>
-        <span class="eyebrow">Nos expertises</span>
-        <h2>Trois piliers, une seule ambition&nbsp;: la fiabilité.</h2>
-        <p>Nous combinons intelligence artificielle, infrastructures cloud accélérées et sécurité pour livrer des systèmes qui tiennent la charge — et la durée.</p>
+        <span class="eyebrow">L'ingénierie derrière SUBUL</span>
+        <h2>Le même savoir-faire technique construit SUBUL et accompagne nos projets clients.</h2>
+        <p>Nos trois domaines d'expertise — IA, Cloud, Cybersécurité — sont d'abord au service de notre propre produit. Nous les mettons aussi à disposition d'un nombre limité de projets clients sélectionnés.</p>
       </div>
       <div class="service-grid">
         <div class="service-card" data-reveal>
@@ -551,43 +596,6 @@
           <h3>Cybersécurité</h3>
           <p>Audit de sécurité, tests d'intrusion, mise en conformité et supervision continue pour protéger vos actifs numériques.</p>
           <div class="service-tags"><span>Pentesting</span><span>Audit</span><span>Conformité</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SUBUL ============ -->
-  <section class="subul" id="subul">
-    <div class="container">
-      <div class="subul-head" data-reveal>
-        <div>
-          <span class="eyebrow" style="color:var(--magenta);">Notre SaaS</span>
-          <h2>SUBUL — l'EdTech et le JobTech réunis.</h2>
-          <p>Une seule plateforme pour monter en compétences sur les métiers tech recherchés, puis se connecter directement aux entreprises qui recrutent.</p>
-        </div>
-      </div>
-      <div class="subul-grid">
-        <div class="subul-card learn" data-reveal>
-          <span class="tag">SUBUL · EdTech</span>
-          <h3>SUBUL Learn</h3>
-          <p>Des parcours pratiques et certifiants en IA, Cloud et Cybersécurité, pensés pour amener rapidement du niveau débutant à l'employabilité.</p>
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Parcours guidés par domaine et niveau</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Labs pratiques sur des cas réels</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Suivi de progression et badges de compétences</li>
-          </ul>
-          <a href="#xp" class="btn">Voir les labs SUBUL XP</a>
-        </div>
-        <div class="subul-card jobs" data-reveal>
-          <span class="tag">SUBUL · JobTech</span>
-          <h3>SUBUL Jobs</h3>
-          <p>Un matching intelligent entre talents formés sur SUBUL Learn et entreprises tech en recherche de profils opérationnels.</p>
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Profils vérifiés par la pratique, pas que par CV</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Matching par compétences et disponibilité</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Un pipeline de recrutement simplifié pour les entreprises</li>
-          </ul>
-          <a href="#contact" class="btn">Recruter via SUBUL</a>
         </div>
       </div>
     </div>
@@ -703,8 +711,8 @@
       <a href="#top" class="brand" style="color:#fff;text-decoration:none;"><span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 L19 4.5 V11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 V4.5 Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="12" y1="7" x2="9" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><line x1="12" y1="7" x2="15" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><line x1="9" y1="13" x2="15" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><circle cx="12" cy="7" r="1.3" fill="#fff"/><circle cx="9" cy="13" r="1.3" fill="#fff"/><circle cx="15" cy="13" r="1.3" fill="#fff"/></svg></span>Dev4Caustaza</a>
       <nav>
         <a href="#about">À propos</a>
-        <a href="#services">Expertises</a>
         <a href="#subul">SUBUL</a>
+        <a href="#services">Expertises</a>
         <a href="#xp">SUBUL XP</a>
         <a href="#contact">Contact</a>
         <a href="en/index.html">English version</a>
