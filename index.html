@@ -314,6 +314,26 @@
     background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); color:var(--ink-soft);
   }
 
+  /* ---------------- STACK ---------------- */
+  .stack{ padding:128px 0; background:#fff; }
+  .stack-providers{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:0 0 48px; }
+  .stack-provider{
+    font-family:var(--mono); font-size:14px; font-weight:700; letter-spacing:.02em;
+    padding:12px 24px; border-radius:999px; color:var(--purple-dk);
+    background:var(--purple-lt); border:1px solid #ECE3FB;
+  }
+  .stack-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  @media (max-width:900px){ .stack-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .stack-grid{ grid-template-columns:1fr; } }
+  .stack-group{ padding:26px 22px; border-radius:16px; border:1px solid var(--line); transition:border-color .2s, box-shadow .2s, transform .2s; }
+  .stack-group:hover{ border-color:#DED2FA; box-shadow:0 20px 40px -24px rgba(76,31,184,.25); transform:translateY(-4px); }
+  .stack-group h4{ font-size:15px; font-weight:800; margin:0 0 16px; letter-spacing:-.005em; }
+  .stack-group .service-tags span{
+    background:var(--purple-lt); border:1px solid #ECE3FB; color:var(--purple-dk);
+  }
+  .stack-source{ text-align:center; margin:40px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--label); }
+  .stack-source a{ color:var(--purple-dk); font-weight:700; text-decoration:underline; }
+
   /* ---------------- SUBUL PRODUCT ---------------- */
   .subul{ padding:128px 0; background:#fff; }
   .subul-head{ display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:48px; }
@@ -463,6 +483,7 @@
       <li><a href="#about">À propos</a></li>
       <li><a href="#subul">SUBUL</a></li>
       <li><a href="#services">Expertises</a></li>
+      <li><a href="#stack">Stack</a></li>
       <li><a href="#xp">SUBUL XP</a></li>
       <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
       <li><a href="en/index.html" class="lang-switch">EN</a></li>
@@ -617,6 +638,40 @@
     </div>
   </section>
 
+  <!-- ============ STACK ============ -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">Notre stack technique</span>
+        <h2>Le vrai outillage derrière SUBUL Learn.</h2>
+        <p>150 labs pratiques, répartis sur AWS et Microsoft Azure — le même outillage que nous utilisons pour construire SUBUL.</p>
+      </div>
+      <div class="stack-providers" data-reveal>
+        <span class="stack-provider">Amazon Web Services (AWS)</span>
+        <span class="stack-provider">Microsoft Azure</span>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-group" data-reveal>
+          <h4>Intelligence Artificielle</h4>
+          <div class="service-tags"><span>RAG</span><span>LLM Agents</span><span>LangGraph</span><span>CrewAI</span><span>MCP</span><span>Whisper</span><span>Vision-Language Models</span><span>Vector DB</span></div>
+        </div>
+        <div class="stack-group" data-reveal>
+          <h4>Cloud &amp; DevOps</h4>
+          <div class="service-tags"><span>Docker</span><span>Kubernetes (Helm, k3s, ArgoCD)</span><span>Terraform</span><span>Ansible</span><span>CI/CD</span><span>Grafana</span><span>Prometheus</span></div>
+        </div>
+        <div class="stack-group" data-reveal>
+          <h4>Data Engineering</h4>
+          <div class="service-tags"><span>Apache Kafka</span><span>Apache Spark</span><span>dbt</span><span>Airflow</span><span>PostgreSQL</span><span>Apache Superset</span></div>
+        </div>
+        <div class="stack-group" data-reveal>
+          <h4>Cybersécurité</h4>
+          <div class="service-tags"><span>SIEM (Wazuh)</span><span>MITRE ATT&amp;CK</span><span>Zero Trust</span><span>HashiCorp Vault</span><span>Keycloak / SSO</span></div>
+        </div>
+      </div>
+      <p class="stack-source">Catalogue complet des 150 labs&nbsp;: <a href="https://sujets.subul.uk" target="_blank" rel="noopener">sujets.subul.uk</a></p>
+    </div>
+  </section>
+
   <!-- ============ SUBUL XP ============ -->
   <section class="xp" id="xp">
     <div class="container">
@@ -729,6 +784,7 @@
         <a href="#about">À propos</a>
         <a href="#subul">SUBUL</a>
         <a href="#services">Expertises</a>
+        <a href="#stack">Stack</a>
         <a href="#xp">SUBUL XP</a>
         <a href="#contact">Contact</a>
         <a href="en/index.html">English version</a>
