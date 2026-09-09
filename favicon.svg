@@ -1,16 +1,7 @@
-<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#D6006E"/>
-      <stop offset="1" stop-color="#6D28D9"/>
-    </linearGradient>
-  </defs>
-  <rect width="48" height="48" rx="12" fill="url(#g)"/>
-  <path d="M24 9 L35 13.5 V22 C35 31 30.5 37.5 24 40.5 C17.5 37.5 13 31 13 22 V13.5 Z" fill="none" stroke="#fff" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
-  <line x1="24" y1="18" x2="18" y2="27" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
-  <line x1="24" y1="18" x2="30" y2="27" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
-  <line x1="18" y1="27" x2="30" y2="27" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
-  <circle cx="24" cy="18" r="2.5" fill="#fff"/>
-  <circle cx="18" cy="27" r="2.5" fill="#fff"/>
-  <circle cx="30" cy="27" r="2.5" fill="#fff"/>
+<svg width="48" height="48" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1000" height="1000" rx="220" fill="#3D2AA8"/>
+  <g transform="translate(24,0)">
+    <path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/>
+    <path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/>
+  </g>
 </svg>

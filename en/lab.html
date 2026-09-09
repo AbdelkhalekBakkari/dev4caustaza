@@ -19,17 +19,17 @@
 
 <style>
   :root{
-    --bg:        #130A24;
+    --bg:        #14101C;
     --card:      #FFFFFF;
-    --title:     #150C29;
-    --body:      #5C5568;
-    --label:     #6E6880;
-    --line:      #E6E1EC;
-    --purple:    #7C3AED;
-    --purple-dk: #4C1FB8;
-    --purple-lt: #F3EDFF;
-    --magenta:   #FF2E88;
-    --magenta-lt:#FFEAF3;
+    --title:     #171412;
+    --body:      #5C5650;
+    --label:     #8A8378;
+    --line:      #E8E4DC;
+    --purple:    #5B3EE0;
+    --purple-dk: #3D2AA8;
+    --purple-lt: #F0EEFB;
+    --magenta:   #9F1239;
+    --magenta-lt:#FBEAEE;
     --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
@@ -40,8 +40,8 @@
     margin:0;
     padding:34px 18px 60px;
     background:
-      radial-gradient(700px 420px at 88% -10%, rgba(255,46,136,.28), transparent 60%),
-      radial-gradient(600px 500px at -10% 15%, rgba(124,58,237,.4), transparent 55%),
+      radial-gradient(700px 420px at 88% -10%, rgba(159,18,57,.28), transparent 60%),
+      radial-gradient(600px 500px at -10% 15%, rgba(91,62,224,.4), transparent 55%),
       var(--bg);
     font-family:"Plus Jakarta Sans",system-ui,sans-serif;
     color:var(--title);
@@ -127,7 +127,7 @@
   input:focus,select:focus{
     outline:none;
     border-color:var(--purple);
-    box-shadow:0 0 0 3px rgba(124,58,237,.16);
+    box-shadow:0 0 0 3px rgba(91,62,224,.16);
   }
   input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--magenta); }
 
@@ -162,7 +162,7 @@
     color:var(--purple-dk);
   }
   .opts input:checked + label::before{ border-color:var(--purple-dk); border-width:6px; }
-  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(124,58,237,.28); }
+  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(91,62,224,.28); }
 
   /* checkboxes (multiple choice) */
   .opts.multi label::before{ border-radius:5px; }
@@ -191,15 +191,15 @@
     font-size:16px;
     font-weight:700;
     color:#fff;
-    background:linear-gradient(135deg, var(--magenta), var(--purple) 60%, #4F46E5);
+    background:linear-gradient(135deg, var(--magenta), var(--purple));
     background-size:160% 160%;
     border:0;
     border-radius:10px;
     cursor:pointer;
-    box-shadow:0 10px 30px -10px rgba(255,46,136,.45);
+    box-shadow:0 10px 30px -10px rgba(159,18,57,.45);
     transition:background-position .2s, transform .07s, box-shadow .2s;
   }
-  button:hover:not(:disabled){ background-position:80% 20%; box-shadow:0 14px 34px -10px rgba(255,46,136,.55); }
+  button:hover:not(:disabled){ background-position:80% 20%; box-shadow:0 14px 34px -10px rgba(159,18,57,.55); }
   button:active:not(:disabled){ transform:translateY(1px); }
   button:focus-visible{ outline:3px solid var(--magenta); outline-offset:2px; }
   button:disabled{ opacity:.55; cursor:progress; }
@@ -251,7 +251,7 @@
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
       <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple-dk);text-decoration:none;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex:none;"><rect width="24" height="24" rx="7" fill="url(#navlogo)"/><path d="M12 5 L16.5 6.8 V11 C16.5 14 14.7 16.2 12 17.4 C9.3 16.2 7.5 14 7.5 11 V6.8 Z" fill="none" stroke="#fff" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/><defs><linearGradient id="navlogo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF2E88"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs></svg>
+        <svg width="22" height="22" viewBox="0 0 1000 1000" fill="none" style="flex:none;"><rect width="1000" height="1000" rx="220" fill="#3D2AA8"/><g transform="translate(24,0)"><path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/><path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/></g></svg>
         &larr; Dev4Caustaza / SUBUL XP
       </a>
       <a href="../lab.html" style="font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--purple-dk);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 9px;">FR</a>
