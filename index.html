@@ -349,6 +349,17 @@
   .subul-card.learn a.btn{ background:#fff; color:var(--purple-dk); box-shadow:none; }
   .subul-card.jobs a.btn{ background:#fff; color:#C4005F; box-shadow:none; }
 
+  .traction{
+    margin-top:44px; padding-top:40px; border-top:1px solid var(--line);
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center;
+  }
+  @media (max-width:600px){ .traction{ grid-template-columns:1fr; gap:28px; } }
+  .traction-stat h3{
+    font-family:var(--mono); font-size:38px; font-weight:700; letter-spacing:-.02em; margin:0 0 6px;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .traction-stat p{ margin:0; font-size:13.5px; color:var(--body); font-weight:600; }
+
   /* ---------------- XP PROGRAM ---------------- */
   .xp{ padding:128px 0; background:var(--purple-lt); }
   .xp-inner{
@@ -502,12 +513,12 @@
     <div class="container about-grid">
       <div class="about-panel" data-reveal>
         <div class="about-stat-row">
-          <div class="about-stat"><h3>03</h3><p>Domaines d'expertise&nbsp;: IA, Cloud, Cybersécurité</p></div>
-          <div class="about-stat"><h3>02</h3><p>Verticales SUBUL&nbsp;: EdTech &amp; JobTech</p></div>
+          <div class="about-stat"><h3>2022</h3><p>Fondée · société tunisienne enregistrée (SUARL)</p></div>
+          <div class="about-stat"><h3>RNE</h3><p>Immatriculée sous le n°&nbsp;1770556A · La Marsa, Tunis</p></div>
         </div>
         <div class="about-stat-row">
-          <div class="about-stat"><h3>TN</h3><p>Basés en Tunisie, portée régionale</p></div>
-          <div class="about-stat"><h3>01</h3><p>Mission&nbsp;: former et connecter les talents tech</p></div>
+          <div class="about-stat"><h3>03</h3><p>Domaines d'expertise&nbsp;: IA, Cloud, Cybersécurité</p></div>
+          <div class="about-stat"><h3>02</h3><p>Verticales SUBUL&nbsp;: EdTech &amp; JobTech</p></div>
         </div>
       </div>
       <div class="about-copy" data-reveal>
@@ -557,6 +568,11 @@
           </ul>
           <a href="#contact" class="btn">Recruter via SUBUL</a>
         </div>
+      </div>
+      <div class="traction" data-reveal>
+        <div class="traction-stat"><h3>320</h3><p>Utilisateurs SUBUL</p></div>
+        <div class="traction-stat"><h3>457</h3><p>Labs complétés</p></div>
+        <div class="traction-stat"><h3>14</h3><p>Entreprises engagées</p></div>
       </div>
     </div>
   </section>
@@ -719,6 +735,7 @@
       </nav>
     </div>
     <p class="footer-fine">© <span id="year"></span> DEV4CAUSTAZA — AI · CLOUD · CYBERSECURITY · TUNISIA</p>
+    <p class="footer-fine">Dev4Caustaza SUARL · RNE 1770556A · La Marsa, Tunis, Tunisie · Depuis 2022</p>
   </div>
 </footer>
 
