@@ -288,6 +288,32 @@
   .about-stat h3{ font-family:var(--mono); font-size:27px; font-weight:700; margin:0 0 6px; color:var(--purple-dk); letter-spacing:-.01em; }
   .about-stat p{ margin:0; font-size:13.5px; color:var(--body); font-weight:600; }
 
+  /* ---------------- TEAM ---------------- */
+  .team{ padding:128px 0; background:#fff; }
+  .team-avatar{
+    width:52px; height:52px; border-radius:14px; flex:none;
+    background:var(--grad); color:#fff; font-family:var(--mono); font-weight:700; font-size:16px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px -8px rgba(255,46,136,.45);
+  }
+  .team-founder{
+    display:flex; align-items:center; gap:20px; max-width:480px; margin:0 auto 48px;
+    padding:22px 28px; border-radius:18px; background:var(--purple-lt); border:1px solid #ECE3FB;
+  }
+  .team-founder .team-avatar{ width:60px; height:60px; font-size:18px; }
+  .team-founder h3{ font-size:17px; font-weight:800; margin:0 0 4px; letter-spacing:-.005em; }
+  .team-founder .team-role{ font-size:13px; color:var(--purple-dk); }
+  .team-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:920px; margin:0 auto; }
+  @media (max-width:860px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .team-grid{ grid-template-columns:1fr; } }
+  .team-card{
+    display:flex; align-items:center; gap:14px; padding:18px 20px; border-radius:16px;
+    border:1px solid var(--line); transition:border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .team-card:hover{ border-color:#DED2FA; box-shadow:0 20px 40px -24px rgba(76,31,184,.25); transform:translateY(-3px); }
+  .team-card h3{ font-size:14.5px; font-weight:800; margin:0 0 3px; letter-spacing:-.005em; }
+  .team-role{ margin:0; font-size:12px; color:var(--body); font-weight:600; }
+
   /* ---------------- SERVICES ---------------- */
   .services{ padding:128px 0; background:var(--bg); color:#fff; }
   .service-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
@@ -497,6 +523,7 @@
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">À propos</a></li>
+      <li><a href="#team">Équipe</a></li>
       <li><a href="#subul">SUBUL</a></li>
       <li><a href="#services">Expertises</a></li>
       <li><a href="#stack">Stack</a></li>
@@ -568,6 +595,50 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF2E88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Une plateforme SaaS propriétaire (SUBUL) pour développer l'écosystème tech tunisien</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF2E88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Des labs pratiques et une résidence tech (SUBUL XP) pour apprendre en construisant</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <span class="eyebrow">L'équipe</span>
+        <h2>Les personnes qui construisent SUBUL.</h2>
+        <p>Une équipe technique restreinte, basée en Tunisie.</p>
+      </div>
+      <div class="team-founder" data-reveal>
+        <div class="team-avatar">AB</div>
+        <div>
+          <h3>Abdelkhalek Bakkari</h3>
+          <p class="team-role">CEO &amp; Fondateur·rice</p>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">AB</div>
+          <div><h3>Anas Baccari</h3><p class="team-role">Ingénieur·e Logiciel</p></div>
+        </div>
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">OG</div>
+          <div><h3>Ons Gharbi</h3><p class="team-role">Ingénieur·e DevOps</p></div>
+        </div>
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">NA</div>
+          <div><h3>Nour Allani</h3><p class="team-role">Ingénieur·e DevOps</p></div>
+        </div>
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">MA</div>
+          <div><h3>Maha Allani</h3><p class="team-role">Ingénieur·e IA</p></div>
+        </div>
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">MN</div>
+          <div><h3>Mariem Negra</h3><p class="team-role">Ingénieur·e IA</p></div>
+        </div>
+        <div class="team-card" data-reveal>
+          <div class="team-avatar">HA</div>
+          <div><h3>Hedi Ben Abdallah</h3><p class="team-role">Ingénieur·e IA</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -801,6 +872,7 @@
       <a href="#top" class="brand" style="color:#fff;text-decoration:none;"><span class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 L19 4.5 V11 C19 16 16 19.5 12 21 C8 19.5 5 16 5 11 V4.5 Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="12" y1="7" x2="9" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><line x1="12" y1="7" x2="15" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><line x1="9" y1="13" x2="15" y2="13" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/><circle cx="12" cy="7" r="1.3" fill="#fff"/><circle cx="9" cy="13" r="1.3" fill="#fff"/><circle cx="15" cy="13" r="1.3" fill="#fff"/></svg></span>Dev4Caustaza</a>
       <nav>
         <a href="#about">À propos</a>
+        <a href="#team">Équipe</a>
         <a href="#subul">SUBUL</a>
         <a href="#services">Expertises</a>
         <a href="#stack">Stack</a>
