@@ -12,25 +12,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subul XP — Ta demande de lab</title>
+<meta name="description" content="Réserve gratuitement ton premier lab pratique SUBUL XP : DevOps, IA &amp; Agents, Cybersécurité, Data, Full Stack ou Cloud. Une résidence tech, pas un centre de formation.">
+<link rel="canonical" href="https://dev4caustaza.com/lab.html">
+<meta property="og:title" content="Subul XP — Ta demande de lab">
+<meta property="og:description" content="Réserve gratuitement ton premier lab pratique : DevOps, IA &amp; Agents, Cybersécurité, Data, Full Stack ou Cloud.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dev4caustaza.com/lab.html">
+<meta property="og:image" content="https://dev4caustaza.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dev4caustaza.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:        #14101C;
+    --bg:        #291240;
     --card:      #FFFFFF;
-    --title:     #171412;
-    --body:      #5C5650;
-    --label:     #8A8378;
-    --line:      #E8E4DC;
-    --purple:    #5B3EE0;
-    --purple-dk: #3D2AA8;
-    --purple-lt: #F0EEFB;
-    --magenta:   #9F1239;
-    --magenta-lt:#FBEAEE;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --title:     #1A0E2E;
+    --body:      #5C5568;
+    --label:     #6E6880;
+    --line:      #E6E1EC;
+    --purple:    #6D28D9;
+    --purple-dk: #4C1D95;
+    --purple-lt: #F4EAFE;
+    --magenta:   #D6006E;
+    --magenta-lt:#FBE8F1;
   }
 
   *{ box-sizing:border-box; }
@@ -39,10 +47,7 @@
   body{
     margin:0;
     padding:34px 18px 60px;
-    background:
-      radial-gradient(700px 420px at 88% -10%, rgba(159,18,57,.28), transparent 60%),
-      radial-gradient(600px 500px at -10% 15%, rgba(91,62,224,.4), transparent 55%),
-      var(--bg);
+    background:var(--bg);
     font-family:"Plus Jakarta Sans",system-ui,sans-serif;
     color:var(--title);
     line-height:1.55;
@@ -63,9 +68,8 @@
     position:relative;
     z-index:1;
     background:var(--card);
-    border-radius:20px;
+    border-radius:6px;
     padding:38px 34px 34px;
-    box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
   }
   @media (max-width:600px){ .card{ padding:30px 22px 28px; } }
 
@@ -84,10 +88,9 @@
   .field{ margin-bottom:26px; }
   .lab{
     display:block;
-    font-family:var(--mono);
-    font-size:11.5px;
+    font-size:12px;
     font-weight:600;
-    letter-spacing:.1em;
+    letter-spacing:.13em;
     text-transform:uppercase;
     color:var(--label);
     margin-bottom:11px;
@@ -106,7 +109,7 @@
     color:var(--title);
     background:#fff;
     border:1.5px solid var(--line);
-    border-radius:10px;
+    border-radius:6px;
     transition:border-color .14s, box-shadow .14s;
   }
   input::placeholder{ color:#AFA8BC; font-weight:400; }
@@ -127,7 +130,7 @@
   input:focus,select:focus{
     outline:none;
     border-color:var(--purple);
-    box-shadow:0 0 0 3px rgba(91,62,224,.16);
+    box-shadow:0 0 0 3px rgba(109,40,217,.14);
   }
   input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--magenta); }
 
@@ -143,7 +146,7 @@
     color:var(--purple);
     background:#fff;
     border:1.5px solid var(--line);
-    border-radius:12px;
+    border-radius:6px;
     cursor:pointer;
     transition:background .14s, border-color .14s;
   }
@@ -162,7 +165,7 @@
     color:var(--purple-dk);
   }
   .opts input:checked + label::before{ border-color:var(--purple-dk); border-width:6px; }
-  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(91,62,224,.28); }
+  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(109,40,217,.25); }
 
   /* cases à cocher (choix multiple) */
   .opts.multi label::before{ border-radius:5px; }
@@ -177,7 +180,7 @@
     margin-top:11px;
     padding:13px 16px;
     background:var(--magenta-lt);
-    border-radius:10px;
+    border-radius:6px;
     color:var(--magenta);
     font-size:15px;
     font-weight:600;
@@ -191,15 +194,13 @@
     font-size:16px;
     font-weight:700;
     color:#fff;
-    background:linear-gradient(135deg, var(--magenta), var(--purple));
-    background-size:160% 160%;
+    background:var(--purple-dk);
     border:0;
-    border-radius:10px;
+    border-radius:6px;
     cursor:pointer;
-    box-shadow:0 10px 30px -10px rgba(159,18,57,.45);
-    transition:background-position .2s, transform .07s, box-shadow .2s;
+    transition:background .15s, transform .07s;
   }
-  button:hover:not(:disabled){ background-position:80% 20%; box-shadow:0 14px 34px -10px rgba(159,18,57,.55); }
+  button:hover:not(:disabled){ background:var(--magenta); }
   button:active:not(:disabled){ transform:translateY(1px); }
   button:focus-visible{ outline:3px solid var(--magenta); outline-offset:2px; }
   button:disabled{ opacity:.55; cursor:progress; }
@@ -212,14 +213,13 @@
   .step-dot .dot-num{
     width:30px; height:30px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:13px; font-weight:700; color:#AFA8BC;
+    font-size:13px; font-weight:800; color:#AFA8BC;
     background:#F4F1F8; border:2px solid var(--line);
     transition:background .18s, border-color .18s, color .18s;
   }
   .step-dot .dot-label{
-    font-family:var(--mono);
-    font-size:10px; font-weight:600; color:var(--label);
-    text-transform:uppercase; letter-spacing:.05em; white-space:nowrap;
+    font-size:10.5px; font-weight:700; color:var(--label);
+    text-transform:uppercase; letter-spacing:.06em; white-space:nowrap;
   }
   .step-dot.active .dot-num{ background:var(--purple-dk); border-color:var(--purple-dk); color:#fff; }
   .step-dot.active .dot-label{ color:var(--purple-dk); }
@@ -249,13 +249,7 @@
 <div class="wrap">
   <div class="card">
 
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
-      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple-dk);text-decoration:none;">
-        <svg width="22" height="22" viewBox="0 0 1000 1000" fill="none" style="flex:none;"><rect width="1000" height="1000" rx="220" fill="#3D2AA8"/><g transform="translate(24,0)"><path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/><path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/></g></svg>
-        &larr; Dev4Caustaza / SUBUL XP
-      </a>
-      <a href="en/lab.html" style="font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--purple-dk);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 9px;">EN</a>
-    </div>
+    <a href="index.html" style="display:inline-block;margin-bottom:18px;font-size:13px;font-weight:700;color:var(--purple-dk);text-decoration:none;">&larr; Dev4Caustaza / SUBUL XP</a>
 
     <h1>Formulaire</h1>
 
