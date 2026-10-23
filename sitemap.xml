@@ -24,5 +24,17 @@
     <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://dev4caustaza.com/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dev4caustaza.com/en/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dev4caustaza.com/lab.html"/>
+  </url>
+  <url>
+    <loc>https://dev4caustaza.com/en/lab.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://dev4caustaza.com/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dev4caustaza.com/en/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dev4caustaza.com/lab.html"/>
   </url>
 </urlset>
