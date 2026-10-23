@@ -1,0 +1,4 @@
+Sitemap: https://dev4caustaza.com/sitemap.xml
+
+User-agent: *
+Allow: /
