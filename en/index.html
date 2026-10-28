@@ -284,13 +284,10 @@
   .profile-kicker{ margin:0; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--label); }
   .profile-role{ margin:4px 0 0; font-family:var(--serif); font-size:26px; line-height:1; }
   .profile-status{
-    display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:4px; border:1px solid var(--line);
-    font-family:var(--mono); font-size:11px; font-weight:500; color:var(--label); white-space:nowrap;
-    transition:color .24s, border-color .24s;
+    display:inline-flex; align-items:center; gap:7px; padding:6px 10px; border-radius:4px; border:1px solid var(--title);
+    font-family:var(--mono); font-size:11px; font-weight:500; color:var(--title); white-space:nowrap;
   }
-  .profile-status .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); transition:background .24s; }
-  .profile-status.is-done{ color:var(--title); border-color:var(--title); }
-  .profile-status.is-done .dot{ background:var(--purple-dk); }
+  .profile-status .dot{ width:7px; height:7px; border-radius:50%; background:var(--purple-dk); }
   .profile-checks{ list-style:none; margin:0; padding:4px 0; }
   .profile-checks li{
     display:grid; grid-template-columns:20px 1fr auto; gap:12px; align-items:center;
@@ -298,12 +295,16 @@
   }
   .profile-checks li:last-child{ border-bottom:0; }
   .profile-check{
-    width:20px; height:20px; border-radius:4px; border:1px solid var(--line); display:grid; place-items:center;
-    transition:background .24s, border-color .24s;
+    width:20px; height:20px; border-radius:4px; display:grid; place-items:center;
+    background:var(--purple-dk); border:1px solid var(--purple-dk);
   }
-  .profile-check svg{ opacity:0; transform:scale(.5); transition:opacity .24s, transform .24s cubic-bezier(.2,.7,.2,1); }
-  .profile-checks li.is-done .profile-check{ background:var(--purple-dk); border-color:var(--purple-dk); }
-  .profile-checks li.is-done .profile-check svg{ opacity:1; transform:none; }
+  @keyframes check-in{ from{ transform:scale(.55); } to{ transform:none; } }
+  .hero-visual.in .profile-check svg{ animation:check-in .32s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-visual.in .profile-checks li:nth-child(1) .profile-check svg{ animation-delay:.35s; }
+  .hero-visual.in .profile-checks li:nth-child(2) .profile-check svg{ animation-delay:.47s; }
+  .hero-visual.in .profile-checks li:nth-child(3) .profile-check svg{ animation-delay:.59s; }
+  .hero-visual.in .profile-checks li:nth-child(4) .profile-check svg{ animation-delay:.71s; }
+  .hero-visual.in .profile-checks li:nth-child(5) .profile-check svg{ animation-delay:.83s; }
   .profile-skill{ font-weight:600; }
   .profile-meta{ font-family:var(--mono); font-size:11px; color:var(--label); text-align:right; }
   .profile-foot{
@@ -664,14 +665,14 @@
               <p class="profile-kicker">Anonymized profile</p>
               <p class="profile-role">DevOps Engineer</p>
             </div>
-            <span class="profile-status is-done" data-pending="Verifying…"><span class="dot"></span><span class="label">Verified</span></span>
+            <span class="profile-status"><span class="dot"></span>Verified</span>
           </div>
           <ul class="profile-checks">
-            <li class="is-done"><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Kubernetes</span><span class="profile-meta">Helm · k3s · ArgoCD</span></li>
-            <li class="is-done"><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Terraform</span><span class="profile-meta">Infrastructure as Code</span></li>
-            <li class="is-done"><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">CI/CD</span><span class="profile-meta">Pipelines</span></li>
-            <li class="is-done"><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Prometheus · Grafana</span><span class="profile-meta">Observability</span></li>
-            <li class="is-done"><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Ansible</span><span class="profile-meta">Configuration</span></li>
+            <li><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Kubernetes</span><span class="profile-meta">Helm · k3s · ArgoCD</span></li>
+            <li><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Terraform</span><span class="profile-meta">Infrastructure as Code</span></li>
+            <li><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">CI/CD</span><span class="profile-meta">Pipelines</span></li>
+            <li><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Prometheus · Grafana</span><span class="profile-meta">Observability</span></li>
+            <li><span class="profile-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span class="profile-skill">Ansible</span><span class="profile-meta">Configuration</span></li>
           </ul>
           <div class="profile-foot"><span>Skills validated in lab</span><span class="profile-tally">5/5</span></div>
         </div>
@@ -1016,28 +1017,6 @@ navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   navLinks.classList.remove("open");
   navToggle.setAttribute("aria-expanded", "false");
 }));
-
-/* example profile: skill verification */
-const profile = document.querySelector(".profile-card");
-if (profile && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const rows   = profile.querySelectorAll(".profile-checks li");
-  const tally  = profile.querySelector(".profile-tally");
-  const status = profile.querySelector(".profile-status");
-  const label  = status.querySelector(".label");
-  const doneLabel = label.textContent;
-  rows.forEach(row => row.classList.remove("is-done"));
-  status.classList.remove("is-done");
-  label.textContent = status.dataset.pending;
-  tally.textContent = "0/" + rows.length;
-  rows.forEach((row, i) => setTimeout(() => {
-    row.classList.add("is-done");
-    tally.textContent = (i + 1) + "/" + rows.length;
-    if (i === rows.length - 1) {
-      status.classList.add("is-done");
-      label.textContent = doneLabel;
-    }
-  }, 900 + i * 280));
-}
 
 /* company request */
 const cf        = document.getElementById("cf");
