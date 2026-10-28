@@ -212,6 +212,8 @@
   .btn-primary:hover{ background:#2F2085; }
   .btn-light{ background:var(--paper); color:var(--title); }
   .btn-light:hover{ background:#fff; }
+  .btn-outline{ background:transparent; color:var(--paper); border-color:rgba(246,244,239,.45); }
+  .btn-outline:hover{ border-color:var(--paper); background:rgba(246,244,239,.06); }
   .btn-block{ width:100%; justify-content:space-between; }
   .btn-arrow{ flex:none; transition:transform .24s cubic-bezier(.2,.7,.2,1); }
   .btn:hover .btn-arrow{ transform:translateX(4px); }
@@ -252,16 +254,22 @@
   }
   .hero h1 em{ font-style:italic; color:var(--clay-soft); }
   .hero .lead{ font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:52ch; margin:0 0 40px; }
-  .hero-actions{ display:flex; flex-wrap:wrap; align-items:center; gap:20px 32px; }
+  .hero-actions{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:20px 16px; }
+  .hero-choice{ display:flex; flex-direction:column; gap:10px; }
+  .hero-choice-label{ font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+  @media (max-width:560px){
+    .hero .kicker{ margin-bottom:20px; }
+    .hero h1{ margin-bottom:20px; }
+    .hero .lead{ font-size:17px; margin-bottom:28px; }
+    .hero-choice{ flex:1 1 100%; }
+    .hero-choice .btn{ justify-content:space-between; }
+  }
   .hero-proof{
     list-style:none; margin:64px 0 0; padding:24px 0 0; border-top:1px solid var(--line-dk);
     display:flex; flex-wrap:wrap; gap:24px 48px;
   }
-  .hero-proof li{ display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--ink-faint); }
+  .hero-proof li{ display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--ink-soft); }
   .hero-proof strong{ font-family:var(--serif); font-weight:400; font-size:44px; line-height:1; color:var(--paper); font-variant-numeric:tabular-nums; }
-  .hero-alt{ margin:32px 0 0; font-size:14px; color:var(--ink-faint); }
-  .hero-alt a{ color:var(--ink-soft); text-underline-offset:3px; }
-  .hero-alt a:hover{ color:var(--paper); }
 
   .hero-visual{ perspective:1800px; }
   .hero-caption{ margin:20px 0 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
@@ -458,7 +466,7 @@
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
   }
   .path-tag span + span{ letter-spacing:.06em; text-transform:none; }
-  .path-hire .path-tag span + span{ color:var(--ink-faint); }
+  .path-hire .path-tag span + span{ color:var(--ink-soft); }
   .path-learn .path-tag{ border-color:var(--line); color:var(--clay); }
   .path-learn .path-tag span + span{ color:var(--label); }
   .path h3{ margin:0 0 32px; font-family:var(--serif); font-weight:400; font-size:clamp(28px,2.6vw,36px); line-height:1.1; letter-spacing:-.005em; }
@@ -471,7 +479,7 @@
   .path-steps strong{ font-size:16px; font-weight:600; }
   .path-steps span{ font-size:14px; }
   .path-hire .path-steps li::before{ color:var(--signal); }
-  .path-hire .path-steps span{ color:var(--ink-faint); }
+  .path-hire .path-steps span{ color:var(--ink-soft); }
   .path-learn .path-steps li{ border-color:var(--line); }
   .path-learn .path-steps li::before{ color:var(--clay); }
   .path-learn .path-steps span{ color:var(--body); }
@@ -548,7 +556,7 @@
   .next-steps li{ display:grid; grid-template-columns:44px 1fr; gap:4px 12px; padding:20px 0; border-bottom:1px solid var(--line-dk); }
   .next-steps .n{ grid-row:span 2; font-family:var(--mono); font-size:12px; color:var(--ink-faint); padding-top:3px; transition:color .24s; }
   .next-steps strong{ font-size:16px; font-weight:600; color:var(--paper); }
-  .next-steps .d{ font-size:14px; color:var(--ink-faint); }
+  .next-steps .d{ font-size:14px; color:var(--ink-soft); }
   .next-steps li.is-done .n{ color:var(--signal); }
   .contact-alt{ display:flex; flex-wrap:wrap; gap:10px 28px; margin:36px 0 0; font-size:14px; }
   .contact-alt a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px solid rgba(246,244,239,.25); padding-bottom:1px; transition:color .24s, border-color .24s; }
@@ -639,15 +647,14 @@
         <h1>Recrutez des ingénieurs aux compétences <em>prouvées</em>, pas déclarées.</h1>
         <p class="lead">SUBUL forme des talents IA, Cloud et Cybersécurité sur 150 labs pratiques AWS et Azure, valide leurs compétences par la pratique, puis vous met en relation avec les profils qui correspondent à votre stack.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-light btn-swap"><span class="swap"><span>Recevoir des profils vérifiés</span><span aria-hidden="true">Réponse sous 48&nbsp;h</span></span><svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#subul" class="text-link">Comment ça marche <span aria-hidden="true">→</span></a>
+          <div class="hero-choice"><span class="hero-choice-label">Je recrute</span><a href="#contact" class="btn btn-light btn-swap"><span class="swap"><span>Recevoir des profils vérifiés</span><span aria-hidden="true">Réponse sous 48&nbsp;h</span></span><svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <div class="hero-choice"><span class="hero-choice-label">Je veux apprendre</span><a href="lab.html" class="btn btn-outline">Réserver un lab gratuit<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <ul class="hero-proof">
           <li><strong>457</strong>labs complétés</li>
           <li><strong>150</strong>labs AWS &amp; Azure</li>
           <li><strong>14</strong>entreprises engagées</li>
         </ul>
-        <p class="hero-alt">Vous êtes candidat·e&nbsp;? <a href="lab.html">Réserver un lab gratuit</a></p>
       </div>
       <div class="hero-visual" data-reveal aria-hidden="true">
         <div class="profile-card">
