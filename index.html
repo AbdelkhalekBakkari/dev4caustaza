@@ -332,17 +332,40 @@
 
   /* ---------------- TEAM ---------------- */
   .team{ padding:140px 0; background:var(--paper); }
-  .team-filters{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 0 40px; }
+  .team-filters{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 0 48px; }
   .team-filter{
+    display:inline-flex; align-items:center; gap:8px; flex:none; white-space:nowrap;
     font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.04em;
-    padding:9px 18px; border-radius:999px; border:1.5px solid var(--line); background:#fff; color:var(--label);
+    padding:8px 10px 8px 16px; border-radius:999px; border:1.5px solid var(--line); background:#fff; color:var(--label);
     cursor:pointer; transition:background .18s, border-color .18s, color .18s;
+  }
+  .team-filter-n{
+    min-width:22px; padding:2px 6px; border-radius:999px; text-align:center;
+    font-size:10.5px; background:var(--paper); color:var(--label);
+    transition:background .18s, color .18s;
   }
   .team-filter:hover{ border-color:var(--purple); color:var(--purple-dk); }
   .team-filter.active{ background:var(--purple-dk); border-color:var(--purple-dk); color:#fff; }
+  .team-filter.active .team-filter-n{ background:rgba(255,255,255,.18); color:#fff; }
   .team-filter:focus-visible{ outline:2px solid var(--purple); outline-offset:2px; }
-  .team-count{ text-align:center; font-family:var(--mono); font-size:12px; font-weight:600; color:var(--label); letter-spacing:.04em; margin:0 0 20px; }
-  .team-list{ max-width:720px; margin:0 auto; border-top:1px solid var(--line); }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .team-list{ max-width:720px; margin:0 auto; }
+  .team-rows{ list-style:none; margin:0; padding:0; }
+  .team-group-head{
+    display:grid; grid-template-rows:1fr; border-bottom:1px solid var(--title);
+    transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1), opacity .3s ease, border-color .3s ease;
+  }
+  .team-group-label{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin:0; padding:0 2px 12px; overflow:hidden; min-height:0;
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--title);
+    transition:padding-top .4s cubic-bezier(.4,0,.2,1), padding-bottom .4s cubic-bezier(.4,0,.2,1);
+  }
+  .team-group-n{ color:var(--label); letter-spacing:.06em; }
+  .team-group + .team-group .team-group-label{ padding-top:56px; }
+  .team-group.empty .team-group-head{ grid-template-rows:0fr; opacity:0; border-color:transparent; }
+  .team-group.empty .team-group-label{ padding-top:0; padding-bottom:0; }
+  .team-group.empty + .team-group .team-group-label{ padding-top:0; }
   .team-row-wrap{
     display:grid; grid-template-rows:1fr; border-bottom:1px solid var(--line);
     transition:grid-template-rows .4s cubic-bezier(.4,0,.2,1), opacity .3s ease, border-color .3s ease;
@@ -354,7 +377,7 @@
     padding:24px 2px; overflow:hidden; min-height:0;
     transition:padding-left .25s cubic-bezier(.4,0,.2,1), padding-top .4s cubic-bezier(.4,0,.2,1), padding-bottom .4s cubic-bezier(.4,0,.2,1);
   }
-  .team-row:hover{ padding-left:10px; }
+  @media (hover:hover){ .team-row:hover{ padding-left:10px; } }
   .team-name{ font-family:var(--serif); font-size:20px; font-weight:600; color:var(--title); letter-spacing:-.005em; }
   .team-role{
     font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.07em;
@@ -364,7 +387,17 @@
   .team-row-lead .team-name{ font-size:25px; }
   .team-row-lead .team-role{ color:var(--purple-dk); }
   @media (max-width:560px){
-    .team-row{ flex-direction:column; align-items:flex-start; gap:5px; }
+    .team-filters{
+      flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto;
+      margin:0 -24px 36px; padding:2px 24px;
+      scrollbar-width:none;
+    }
+    .team-filters::-webkit-scrollbar{ display:none; }
+    .team-group + .team-group .team-group-label{ padding-top:40px; }
+    .team-row{ flex-direction:column; align-items:flex-start; gap:4px; padding:18px 2px; }
+    .team-row-lead{ padding:20px 2px; }
+    .team-name{ font-size:19px; }
+    .team-row-lead .team-name{ font-size:22px; }
   }
 
   /* ---------------- SERVICES ---------------- */
@@ -559,7 +592,7 @@
 
   @media (max-width:640px){
     .hero{ padding:88px 0 72px; }
-    .about, .services, .subul, .xp, .why{ padding:76px 0; }
+    .about, .team, .services, .stack, .subul, .xp, .why{ padding:76px 0; }
     .contact{ padding:76px 0 88px; }
   }
 
@@ -661,40 +694,44 @@
         <p>Une équipe technique restreinte, basée en Tunisie.</p>
       </div>
       <div class="team-filters" role="group" aria-label="Filtrer l'équipe par domaine" data-reveal>
-        <button type="button" class="team-filter active" data-dept="all" aria-pressed="true">Toutes</button>
-        <button type="button" class="team-filter" data-dept="leadership" aria-pressed="false">Direction</button>
-        <button type="button" class="team-filter" data-dept="software" aria-pressed="false">Logiciel</button>
-        <button type="button" class="team-filter" data-dept="devops" aria-pressed="false">DevOps</button>
-        <button type="button" class="team-filter" data-dept="ai" aria-pressed="false">IA</button>
+        <button type="button" class="team-filter active" data-dept="all" aria-pressed="true">Toutes <span class="team-filter-n"></span></button>
+        <button type="button" class="team-filter" data-dept="leadership" aria-pressed="false">Direction <span class="team-filter-n"></span></button>
+        <button type="button" class="team-filter" data-dept="software" aria-pressed="false">Logiciel <span class="team-filter-n"></span></button>
+        <button type="button" class="team-filter" data-dept="devops" aria-pressed="false">DevOps <span class="team-filter-n"></span></button>
+        <button type="button" class="team-filter" data-dept="ai" aria-pressed="false">IA <span class="team-filter-n"></span></button>
       </div>
-      <p class="team-count" id="teamCount" aria-live="polite"></p>
+      <p class="sr-only" id="teamCount" aria-live="polite"></p>
       <div class="team-list" id="teamList" data-reveal>
-        <div class="team-row-wrap" data-dept="leadership">
-          <div class="team-row team-row-lead">
-            <span class="team-name">Abdelkhalek Bakkari</span>
-            <span class="team-role">CEO &amp; Fondateur</span>
-          </div>
+        <div class="team-group">
+          <div class="team-group-head"><h3 class="team-group-label"><span>Direction</span> <span class="team-group-n"></span></h3></div>
+          <ul class="team-rows">
+            <li class="team-row-wrap" data-dept="leadership">
+              <div class="team-row team-row-lead"><span class="team-name">Abdelkhalek Bakkari</span><span class="team-role">CEO &amp; Fondateur</span></div>
+            </li>
+            <li class="team-row-wrap" data-dept="leadership">
+              <div class="team-row team-row-lead"><span class="team-name">Hedi Ben Abdallah</span><span class="team-role">CTO</span></div>
+            </li>
+          </ul>
         </div>
-        <div class="team-row-wrap" data-dept="leadership">
-          <div class="team-row team-row-lead">
-            <span class="team-name">Hedi Ben Abdallah</span>
-            <span class="team-role">CTO</span>
-          </div>
-        </div>
-        <div class="team-row-wrap" data-dept="software">
-          <div class="team-row"><span class="team-name">Anas Baccari</span><span class="team-role">Ingénieur·e Logiciel</span></div>
-        </div>
-        <div class="team-row-wrap" data-dept="devops">
-          <div class="team-row"><span class="team-name">Ons Gharbi</span><span class="team-role">Ingénieur·e DevOps</span></div>
-        </div>
-        <div class="team-row-wrap" data-dept="devops">
-          <div class="team-row"><span class="team-name">Nour Allani</span><span class="team-role">Ingénieur·e DevOps</span></div>
-        </div>
-        <div class="team-row-wrap" data-dept="ai">
-          <div class="team-row"><span class="team-name">Maha Allani</span><span class="team-role">Ingénieur·e IA</span></div>
-        </div>
-        <div class="team-row-wrap" data-dept="ai">
-          <div class="team-row"><span class="team-name">Mariem Negra</span><span class="team-role">Ingénieur·e IA</span></div>
+        <div class="team-group">
+          <div class="team-group-head"><h3 class="team-group-label"><span>Ingénierie</span> <span class="team-group-n"></span></h3></div>
+          <ul class="team-rows">
+            <li class="team-row-wrap" data-dept="software">
+              <div class="team-row"><span class="team-name">Anas Baccari</span><span class="team-role">Ingénieur·e Logiciel</span></div>
+            </li>
+            <li class="team-row-wrap" data-dept="devops">
+              <div class="team-row"><span class="team-name">Ons Gharbi</span><span class="team-role">Ingénieur·e DevOps</span></div>
+            </li>
+            <li class="team-row-wrap" data-dept="devops">
+              <div class="team-row"><span class="team-name">Nour Allani</span><span class="team-role">Ingénieur·e DevOps</span></div>
+            </li>
+            <li class="team-row-wrap" data-dept="ai">
+              <div class="team-row"><span class="team-name">Maha Allani</span><span class="team-role">Ingénieur·e IA</span></div>
+            </li>
+            <li class="team-row-wrap" data-dept="ai">
+              <div class="team-row"><span class="team-name">Mariem Negra</span><span class="team-role">Ingénieur·e IA</span></div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -987,17 +1024,32 @@ document.getElementById("cf").addEventListener("submit", e => {
 
 /* filtre équipe par domaine */
 const teamFilters = document.querySelectorAll(".team-filter");
-const teamRowsEls  = document.querySelectorAll(".team-row-wrap");
-const teamCountEl  = document.getElementById("teamCount");
+const teamRowsEls = document.querySelectorAll(".team-row-wrap");
+const teamGroups  = document.querySelectorAll(".team-group");
+const teamCountEl = document.getElementById("teamCount");
+
+const deptCount = dept => dept === "all"
+  ? teamRowsEls.length
+  : [...teamRowsEls].filter(row => row.dataset.dept === dept).length;
+teamFilters.forEach(btn => { btn.querySelector(".team-filter-n").textContent = deptCount(btn.dataset.dept); });
+teamGroups.forEach(group => {
+  group.querySelector(".team-group-n").textContent = String(group.querySelectorAll(".team-row-wrap").length).padStart(2, "0");
+});
 
 function applyTeamFilter(dept){
   let visible = 0;
   teamRowsEls.forEach(row => {
     const match = dept === "all" || row.dataset.dept === dept;
     row.classList.toggle("out", !match);
+    row.setAttribute("aria-hidden", String(!match));
     if (match) visible++;
   });
-  if (teamCountEl) teamCountEl.textContent = visible + (visible === 1 ? " personne" : " personnes");
+  teamGroups.forEach(group => {
+    const empty = !group.querySelector(".team-row-wrap:not(.out)");
+    group.classList.toggle("empty", empty);
+    group.querySelector(".team-group-head").setAttribute("aria-hidden", String(empty));
+  });
+  teamCountEl.textContent = visible + (visible === 1 ? " personne affichée" : " personnes affichées");
 }
 
 teamFilters.forEach(btn => btn.addEventListener("click", () => {
@@ -1006,8 +1058,6 @@ teamFilters.forEach(btn => btn.addEventListener("click", () => {
   btn.setAttribute("aria-pressed", "true");
   applyTeamFilter(btn.dataset.dept);
 }));
-
-if (teamFilters.length) applyTeamFilter("all");
 
 /* scroll reveal */
 if ("IntersectionObserver" in window){
