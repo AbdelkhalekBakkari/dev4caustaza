@@ -6,6 +6,7 @@
   ---------------------------------------------------------------
   CONFIGURATION (see the <script> at the bottom):
     WHATSAPP  -> recipient number, international format without "+"
+    EMAIL     -> address offered to people without WhatsApp
     ENDPOINT  -> URL that receives a JSON copy (optional)
                  empty = no copy sent, WhatsApp still opens
 -->
@@ -27,22 +28,25 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:        #14101C;
+    --bg:        #0E0D12;
+    --paper:     #F6F4EF;
     --card:      #FFFFFF;
-    --title:     #171412;
-    --body:      #5C5650;
-    --label:     #8A8378;
-    --line:      #E8E4DC;
+    --title:     #0E0D12;
+    --body:      #5E5A52;
+    --label:     #6F6A61;
+    --line:      #DDD8CD;
     --purple:    #5B3EE0;
     --purple-dk: #3D2AA8;
-    --purple-lt: #F0EEFB;
-    --magenta:   #9F1239;
-    --magenta-lt:#FBEAEE;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --purple-lt: #EEECF8;
+    --clay:      #B4401E;
+    --clay-lt:   #F6E6DF;
+    --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Geist", system-ui, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
   }
 
   *{ box-sizing:border-box; }
@@ -51,11 +55,10 @@
   body{
     margin:0;
     padding:34px 18px 60px;
-    background:
-      radial-gradient(700px 420px at 88% -10%, rgba(159,18,57,.28), transparent 60%),
-      radial-gradient(600px 500px at -10% 15%, rgba(91,62,224,.4), transparent 55%),
-      var(--bg);
-    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+    background:var(--bg);
+    font-family:var(--sans);
+    font-synthesis-weight:none;
+    -webkit-font-smoothing:antialiased;
     color:var(--title);
     line-height:1.55;
   }
@@ -66,7 +69,7 @@
     position:absolute;
     top:26px; right:-9px; bottom:26px;
     width:9px;
-    background:var(--magenta);
+    background:var(--clay);
     border-radius:0 4px 4px 0;
   }
   @media (max-width:600px){ .wrap::after{ right:-6px; width:6px; } }
@@ -75,19 +78,20 @@
     position:relative;
     z-index:1;
     background:var(--card);
-    border-radius:20px;
+    border-radius:12px;
     padding:38px 34px 34px;
     box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
   }
   @media (max-width:600px){ .card{ padding:30px 22px 28px; } }
 
   h1{
-    font-size:clamp(28px,7vw,36px);
-    font-weight:800;
-    letter-spacing:-.03em;
-    line-height:1.1;
+    font-family:var(--serif);
+    font-size:clamp(38px,8vw,50px);
+    font-weight:400;
+    letter-spacing:-.01em;
+    line-height:1;
     margin:0 0 10px;
-    color:var(--magenta);
+    color:var(--clay);
   }
   .sub{ margin:0; color:var(--body); font-size:15.5px; }
 
@@ -104,7 +108,7 @@
     color:var(--label);
     margin-bottom:11px;
   }
-  .hint{ text-transform:none; letter-spacing:0; font-weight:500; color:#948DA3; }
+  .hint{ text-transform:none; letter-spacing:0; font-weight:500; color:var(--label); }
 
   .duo{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:520px){ .duo{ grid-template-columns:1fr; gap:26px; } }
@@ -117,11 +121,11 @@
     font-weight:500;
     color:var(--title);
     background:#fff;
-    border:1.5px solid var(--line);
-    border-radius:10px;
+    border:1px solid var(--line);
+    border-radius:4px;
     transition:border-color .14s, box-shadow .14s;
   }
-  input::placeholder{ color:#AFA8BC; font-weight:400; }
+  input::placeholder{ color:var(--label); font-weight:400; }
 
   select{
     appearance:none;
@@ -134,14 +138,14 @@
     background-repeat:no-repeat;
     padding-right:42px;
   }
-  select:invalid{ color:#AFA8BC; font-weight:400; }
+  select:invalid{ color:var(--label); font-weight:400; }
 
   input:focus,select:focus{
     outline:none;
     border-color:var(--purple);
     box-shadow:0 0 0 3px rgba(91,62,224,.16);
   }
-  input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--magenta); }
+  input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--clay); }
 
   .opts{ display:flex; flex-direction:column; gap:10px; }
   .opts input{ position:absolute; opacity:0; width:0; height:0; }
@@ -154,8 +158,8 @@
     font-weight:600;
     color:var(--purple);
     background:#fff;
-    border:1.5px solid var(--line);
-    border-radius:12px;
+    border:1px solid var(--line);
+    border-radius:4px;
     cursor:pointer;
     transition:background .14s, border-color .14s;
   }
@@ -164,10 +168,10 @@
     flex:none;
     width:19px; height:19px;
     border-radius:50%;
-    border:2px solid #C9C2D4;
+    border:2px solid #C4BDAF;
     transition:border-color .14s, border-width .14s, background .14s;
   }
-  .opts label:hover{ border-color:#CDBFE4; }
+  .opts label:hover{ border-color:#C4BDAF; }
   .opts input:checked + label{
     background:var(--purple-lt);
     border-color:var(--purple);
@@ -188,9 +192,9 @@
     display:none;
     margin-top:11px;
     padding:13px 16px;
-    background:var(--magenta-lt);
-    border-radius:10px;
-    color:var(--magenta);
+    background:var(--clay-lt);
+    border-radius:4px;
+    color:var(--clay);
     font-size:15px;
     font-weight:600;
   }
@@ -203,17 +207,15 @@
     font-size:16px;
     font-weight:700;
     color:#fff;
-    background:linear-gradient(135deg, var(--magenta), var(--purple));
-    background-size:160% 160%;
+    background:var(--purple-dk);
     border:0;
-    border-radius:10px;
+    border-radius:4px;
     cursor:pointer;
-    box-shadow:0 10px 30px -10px rgba(159,18,57,.45);
-    transition:background-position .2s, transform .07s, box-shadow .2s;
+    transition:background .2s, transform .07s;
   }
-  button:hover:not(:disabled){ background-position:80% 20%; box-shadow:0 14px 34px -10px rgba(159,18,57,.55); }
+  button:hover:not(:disabled){ background:#2F2085; }
   button:active:not(:disabled){ transform:translateY(1px); }
-  button:focus-visible{ outline:3px solid var(--magenta); outline-offset:2px; }
+  button:focus-visible{ outline:3px solid var(--clay); outline-offset:2px; }
   button:disabled{ opacity:.55; cursor:progress; }
 
   .fine{ margin:14px 0 0; text-align:center; font-size:12.5px; color:var(--label); }
@@ -224,8 +226,8 @@
   .step-dot .dot-num{
     width:30px; height:30px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:13px; font-weight:700; color:#AFA8BC;
-    background:#F4F1F8; border:2px solid var(--line);
+    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--label);
+    background:var(--paper); border:2px solid var(--line);
     transition:background .18s, border-color .18s, color .18s;
   }
   .step-dot .dot-label{
@@ -235,10 +237,10 @@
   }
   .step-dot.active .dot-num{ background:var(--purple-dk); border-color:var(--purple-dk); color:#fff; }
   .step-dot.active .dot-label{ color:var(--purple-dk); }
-  .step-dot.done .dot-num{ background:var(--magenta); border-color:var(--magenta); color:#fff; }
-  .step-dot.done .dot-label{ color:var(--magenta); }
+  .step-dot.done .dot-num{ background:var(--clay); border-color:var(--clay); color:#fff; }
+  .step-dot.done .dot-label{ color:var(--clay); }
   .step-line{ flex:1; height:2px; background:var(--line); margin:14px 6px 0; transition:background .18s; }
-  .step-line.done{ background:var(--magenta); }
+  .step-line.done{ background:var(--clay); }
   @media (max-width:480px){ .step-dot .dot-label{ display:none; } }
 
   .step{ display:none; }
@@ -250,9 +252,17 @@
   .nav button{ width:auto; flex:1; }
   .btn-back{
     background:#fff; color:var(--purple-dk);
-    border:1.5px solid var(--line);
+    border:1px solid var(--line);
   }
   .btn-back:hover:not(:disabled){ background:var(--purple-lt); border-color:var(--purple); color:var(--purple-dk); }
+
+  .notice{ margin:0 0 26px; padding:16px 18px; border-radius:4px; background:var(--paper); border:1px solid var(--line); font-size:14px; color:var(--body); }
+  .notice p{ margin:0; }
+  .notice p + p{ margin-top:8px; }
+  .notice strong{ color:var(--title); }
+  .notice a, .privacy a{ color:var(--purple-dk); text-underline-offset:2px; }
+  .help{ margin:8px 0 0; font-size:13px; color:var(--label); }
+  .privacy{ margin:0 0 22px; padding:14px 0 0; border-top:1px solid var(--line); font-size:12.5px; line-height:1.55; color:var(--label); }
 
   @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
 </style>
@@ -272,6 +282,12 @@
     <h1>Form</h1>
 
     <hr>
+
+    <div class="notice">
+      <p><strong>How it works:</strong> three steps, then your request opens in WhatsApp, ready to send to the SUBUL XP team.</p>
+      <p class="notice-send" data-whatsapp="Nothing is sent until you send the message in WhatsApp." data-endpoint="When you submit, your request is also sent directly to the team."></p>
+      <p>No WhatsApp? Email us at <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>.</p>
+    </div>
 
     <div class="stepper" aria-hidden="true">
       <div class="step-dot active" data-dot="1">
@@ -313,9 +329,12 @@
 
         <div class="field">
           <label class="lab" for="whatsapp">Your WhatsApp number</label>
-          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+216 ** *** ***">
+          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+216 ** *** ***" aria-describedby="h-whatsapp">
+          <p class="help" id="h-whatsapp">So we can follow up about your lab.</p>
           <p class="err" id="e-whatsapp">Please enter a reachable WhatsApp number.</p>
         </div>
+
+        <p class="privacy">Privacy: your details are only used to organise your lab and get back to you. The message goes through WhatsApp (a Meta service). To access or delete your data: <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>.</p>
 
         <div class="nav">
           <button type="button" class="btn-next" data-next>Next</button>
@@ -402,18 +421,23 @@
    CONFIGURATION
    ========================================================== */
 const WHATSAPP = "32492493852";   // international format, no "+"
+const EMAIL    = "contact@dev4caustaza.com";
 const ENDPOINT = "";              // JSON copy (optional)
 
 /* The pre-filled message. Edit this text freely. */
 function buildMessage(d){
   return "Hello Subul XP! My name is " + d.prenom + " " + d.nom + ". " +
-         "I am " + d.statut + ", interested in the " + d.domaines + " residency. " +
+         "Status: " + d.statut + ". I'm interested in the " + d.domaines + " residency. " +
          "My level is " + d.niveau + ". " +
          "I would like to book my first free lab.";
 }
 
 const $ = id => document.getElementById(id);
 const f = $("f");
+
+document.querySelectorAll(".mail-link").forEach(a => { a.href = "mailto:" + EMAIL; a.textContent = EMAIL; });
+const noticeSend = document.querySelector(".notice-send");
+noticeSend.textContent = ENDPOINT ? noticeSend.dataset.endpoint : noticeSend.dataset.whatsapp;
 
 /* "A", "A and B", "A, B and C" */
 function joinList(list){
@@ -543,6 +567,7 @@ f.addEventListener("submit", e => {
   if (ENDPOINT){
     fetch(ENDPOINT, {
       method:"POST",
+      keepalive:true,
       headers:{ "Content-Type":"application/json", "Accept":"application/json" },
       body: JSON.stringify({ ...data, message: texte })
     }).catch(() => {});

@@ -123,15 +123,13 @@
   [data-reveal]{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
   [data-reveal].in{ opacity:1; transform:none; }
   @media (prefers-reduced-motion:reduce){ [data-reveal]{ opacity:1; transform:none; } }
-  .service-grid > [data-reveal]:nth-child(2){ transition-delay:.08s; }
-  .service-grid > [data-reveal]:nth-child(3){ transition-delay:.16s; }
-  .stack-grid > [data-reveal]:nth-child(2){ transition-delay:.06s; }
-  .stack-grid > [data-reveal]:nth-child(3){ transition-delay:.12s; }
-  .stack-grid > [data-reveal]:nth-child(4){ transition-delay:.18s; }
+  .tech-grid > [data-reveal]:nth-child(2){ transition-delay:.06s; }
+  .tech-grid > [data-reveal]:nth-child(3){ transition-delay:.12s; }
+  .tech-grid > [data-reveal]:nth-child(4){ transition-delay:.18s; }
   .why-grid > [data-reveal]:nth-child(2){ transition-delay:.06s; }
   .why-grid > [data-reveal]:nth-child(3){ transition-delay:.12s; }
   .why-grid > [data-reveal]:nth-child(4){ transition-delay:.18s; }
-  .subul-grid > [data-reveal]:nth-child(2){ transition-delay:.08s; }
+  .paths-grid > [data-reveal]:nth-child(2){ transition-delay:.08s; }
 
   /* ---------------- NAV ---------------- */
   header{
@@ -228,6 +226,7 @@
     border-bottom:1px solid rgba(246,244,239,.32); padding-bottom:2px; transition:border-color .24s;
   }
   .text-link:hover{ border-color:currentColor; }
+  .text-link-ink{ color:var(--title); border-color:rgba(14,13,18,.3); }
 
   /* ---------------- HERO ---------------- */
   .kicker{
@@ -310,8 +309,8 @@
   .sec-head{ max-width:640px; margin:0 auto 52px; text-align:center; }
   .sec-head h2{ font-family:var(--serif); font-size:clamp(34px,4.2vw,52px); font-weight:500; letter-spacing:-.01em; line-height:1.15; margin:16px 0 14px; }
   .sec-head p{ color:var(--body); font-size:16.5px; margin:0; }
-  section.on-dark .sec-head h2{ color:#fff; }
-  section.on-dark .sec-head p{ color:var(--ink-soft); }
+  .sec-head.on-dark h2{ color:#fff; }
+  .sec-head.on-dark p{ color:var(--ink-soft); }
 
   /* ---------------- ABOUT ---------------- */
   .about{ padding:128px 0; background:var(--paper); }
@@ -419,111 +418,79 @@
   }
   @media (max-width:480px){ .team-grid{ grid-template-columns:1fr; } }
 
-  /* ---------------- SERVICES ---------------- */
+  /* ---------------- TECHNOLOGY ---------------- */
   .services{ padding:128px 0; background:var(--bg); color:#fff; }
-  .service-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
-  @media (max-width:900px){ .service-grid{ grid-template-columns:1fr; } }
-  .service-grid::before{
-    content:""; position:absolute; top:80px; left:6%; right:6%; height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
-    z-index:0;
+  .tech-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line-dk); border:1px solid var(--line-dk); border-radius:12px; overflow:hidden;
   }
-  @media (max-width:900px){ .service-grid::before{ display:none; } }
-  .service-card{
-    position:relative; z-index:1;
-    background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.1);
-    border-radius:20px; padding:32px; overflow:hidden;
-    transition:border-color .2s, transform .25s cubic-bezier(.16,1,.3,1), background .2s, box-shadow .3s;
+  @media (max-width:960px){ .tech-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .tech-grid{ grid-template-columns:1fr; } }
+  .tech-col{ display:flex; flex-direction:column; padding:32px 28px; background:var(--bg); }
+  .tech-index{ margin:0 0 36px; font-family:var(--mono); font-size:12px; color:var(--ink-faint); }
+  .tech-col h3{ margin:0 0 12px; font-family:var(--serif); font-weight:400; font-size:28px; line-height:1.1; color:var(--paper); }
+  .tech-col p{ margin:0 0 28px; font-size:14.5px; color:var(--ink-soft); }
+  .tech-tools{
+    list-style:none; margin:auto 0 0; padding:16px 0 0; border-top:1px solid var(--line-dk);
+    display:grid; gap:9px; font-family:var(--mono); font-size:12.5px; color:var(--paper);
   }
-  .service-card:hover{ border-color:rgba(255,255,255,.28); background:rgba(255,255,255,.075); transform:translateY(-6px); box-shadow:0 24px 50px -20px rgba(0,0,0,.5); }
-  .service-index{
-    position:absolute; top:14px; right:20px; font-family:var(--mono); font-size:44px; font-weight:700;
-    color:rgba(255,255,255,.07); letter-spacing:-.02em; line-height:1;
+  .tech-tools li{ display:flex; align-items:center; gap:10px; }
+  .tech-tools li::before{ content:""; flex:none; width:4px; height:4px; border-radius:50%; background:var(--signal); }
+  .tech-foot{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; margin:28px 0 0;
+    font-family:var(--mono); font-size:12.5px; color:var(--ink-soft);
   }
-  .service-icon{
-    width:54px; height:54px; border-radius:14px; display:flex; align-items:center; justify-content:center;
-    margin-bottom:22px; box-shadow:0 10px 26px -10px rgba(0,0,0,.5);
-  }
-  .service-card:nth-child(1) .service-icon{ background:linear-gradient(135deg,#5B3EE0,#3D2AA8); }
-  .service-card:nth-child(2) .service-icon{ background:linear-gradient(135deg,#1C9C93,#0369A1); }
-  .service-card:nth-child(3) .service-icon{ background:linear-gradient(135deg,#B4401E,#5A1F0E); }
-  .service-card h3{ font-size:19.5px; font-weight:800; margin:0 0 11px; letter-spacing:-.01em; }
-  .service-card p{ color:var(--ink-soft); font-size:14.5px; margin:0 0 20px; }
-  .service-tags{ display:flex; flex-wrap:wrap; gap:8px; }
-  .service-tags span{
-    font-family:var(--mono); font-size:11px; font-weight:600; padding:6px 10px; border-radius:999px;
-    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); color:var(--ink-soft);
-  }
+  .tech-foot a{ color:var(--paper); text-underline-offset:3px; }
 
-  /* ---------------- STACK ---------------- */
-  .stack{ padding:128px 0; background:#F5F2ED; }
-  .stack-providers{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:0 0 48px; }
-  .stack-provider{
-    font-family:var(--mono); font-size:14px; font-weight:700; letter-spacing:.02em;
-    padding:12px 24px; border-radius:999px; color:var(--purple-dk);
-    background:var(--purple-lt); border:1px solid #ECE3FB;
+  /* ---------------- SUBUL: TWO PATHS ---------------- */
+  .paths{ padding:128px 0; background:var(--paper); }
+  .paths-head{ max-width:760px; margin:0 0 56px; }
+  .paths-head h2{ margin:16px 0; font-family:var(--serif); font-weight:400; font-size:clamp(34px,4.2vw,52px); line-height:1.05; letter-spacing:-.01em; }
+  .paths-head p{ margin:0; max-width:62ch; font-size:17px; color:var(--body); }
+  .paths-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:860px){ .paths-grid{ grid-template-columns:1fr; } }
+  .path{ display:flex; flex-direction:column; padding:40px; border-radius:12px; }
+  .path-hire{ background:var(--bg); color:var(--paper); }
+  .path-learn{ background:var(--card); color:var(--title); border:1px solid var(--line); }
+  .path-tag{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+    margin:0 0 28px; padding:0 0 16px; border-bottom:1px solid var(--line-dk);
+    font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
   }
-  .stack-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-  @media (max-width:900px){ .stack-grid{ grid-template-columns:1fr 1fr; } }
-  @media (max-width:560px){ .stack-grid{ grid-template-columns:1fr; } }
-  .stack-group{ padding:26px 22px; border-radius:16px; background:#fff; border:1px solid var(--line); transition:border-color .2s, box-shadow .2s, transform .2s; }
-  .stack-group:hover{ border-color:#DED2FA; box-shadow:0 20px 40px -24px rgba(61,42,168,.25); transform:translateY(-4px); }
-  .stack-group h3{ font-size:15px; font-weight:800; margin:0 0 16px; letter-spacing:-.005em; }
-  .stack-group .service-tags span{
-    background:var(--purple-lt); border:1px solid #ECE3FB; color:var(--purple-dk);
+  .path-tag span + span{ letter-spacing:.06em; text-transform:none; }
+  .path-hire .path-tag span + span{ color:var(--ink-faint); }
+  .path-learn .path-tag{ border-color:var(--line); color:var(--clay); }
+  .path-learn .path-tag span + span{ color:var(--label); }
+  .path h3{ margin:0 0 32px; font-family:var(--serif); font-weight:400; font-size:clamp(28px,2.6vw,36px); line-height:1.1; letter-spacing:-.005em; }
+  .path-steps{ list-style:none; margin:0 0 40px; padding:0; counter-reset:step; }
+  .path-steps li{
+    display:grid; grid-template-columns:40px 1fr; gap:2px 12px; padding:16px 0;
+    border-top:1px solid var(--line-dk); counter-increment:step;
   }
-  .stack-source{ text-align:center; margin:40px 0 0; font-family:var(--mono); font-size:12.5px; color:var(--label); }
-  .stack-source a{ color:var(--purple-dk); font-weight:700; text-decoration:underline; }
-
-  /* ---------------- SUBUL PRODUCT ---------------- */
-  .subul{ padding:128px 0; background:var(--paper); }
-  .subul-head{ display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:48px; }
-  @media (max-width:700px){ .subul-head{ grid-template-columns:1fr; } }
-  .subul-head h2{ font-family:var(--serif); font-size:clamp(34px,4.2vw,52px); font-weight:500; letter-spacing:-.01em; line-height:1.18; margin:16px 0 14px; }
-  .subul-head p{ color:var(--body); font-size:16.5px; max-width:560px; margin:0; }
-
-  .subul-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
-  @media (max-width:800px){ .subul-grid{ grid-template-columns:1fr; } }
-  .subul-card{
-    border-radius:22px; padding:38px; color:#fff; position:relative; overflow:hidden;
-    box-shadow:0 34px 60px -28px rgba(0,0,0,.4);
-  }
-  .subul-card::after{
-    content:""; position:absolute; inset:0; opacity:.5; pointer-events:none;
-    background-image:radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
-    background-size:18px 18px;
-    mask-image:radial-gradient(340px 260px at 100% 0%, #000, transparent 70%);
-  }
-  .subul-card.learn{ background:linear-gradient(150deg,#3D2AA8,#1B0F38 72%); }
-  .subul-card.jobs{ background:linear-gradient(150deg,#8F3217,#2B0E06 72%); }
-  .subul-card > *{ position:relative; z-index:1; }
-  .subul-card .tag{
-    display:inline-block; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
-    padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.14); margin-bottom:18px;
-  }
-  .subul-card h3{ font-size:23px; font-weight:800; margin:0 0 10px; letter-spacing:-.01em; }
-  .subul-card p{ color:rgba(255,255,255,.82); font-size:14.5px; margin:0 0 22px; }
-  .subul-card ul{ list-style:none; margin:0 0 26px; padding:0; display:grid; gap:11px; }
-  .subul-card li{ display:flex; gap:10px; font-size:13.8px; color:rgba(255,255,255,.92); font-weight:600; }
-  .subul-card li svg{ flex:none; margin-top:2px; }
-  .subul-card a.btn{ padding:12px 20px; font-size:13.5px; }
-  .subul-card.learn a.btn{ background:#fff; color:var(--purple-dk); box-shadow:none; }
-  .subul-card.jobs a.btn{ background:#fff; color:#8F3217; box-shadow:none; }
+  .path-steps li::before{ content:"0" counter(step); grid-row:span 2; padding-top:3px; font-family:var(--mono); font-size:12px; }
+  .path-steps strong{ font-size:16px; font-weight:600; }
+  .path-steps span{ font-size:14px; }
+  .path-hire .path-steps li::before{ color:var(--signal); }
+  .path-hire .path-steps span{ color:var(--ink-faint); }
+  .path-learn .path-steps li{ border-color:var(--line); }
+  .path-learn .path-steps li::before{ color:var(--clay); }
+  .path-learn .path-steps span{ color:var(--body); }
+  .path .btn{ margin-top:auto; align-self:flex-start; }
+  @media (max-width:560px){ .path{ padding:28px 22px; } }
 
   .traction{
-    margin-top:48px; padding:40px 32px; border-radius:22px;
-    background:linear-gradient(155deg,#F8F5FF,#FBF0E9 130%); border:1px solid #ECE3FB;
-    box-shadow:0 30px 60px -34px rgba(61,42,168,.25);
+    margin-top:48px; padding:40px 32px; border-radius:12px;
+    background:var(--card); border:1px solid var(--line);
   }
   .traction-label{
     display:block; text-align:center; font-family:var(--mono); font-size:11.5px; font-weight:600;
-    letter-spacing:.12em; text-transform:uppercase; color:var(--purple); margin:0 0 28px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--purple-dk); margin:0 0 28px;
   }
   .traction-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center; }
   @media (max-width:600px){ .traction-row{ grid-template-columns:1fr; gap:28px; } }
   .traction-stat h3{
-    font-family:var(--serif); font-size:38px; font-weight:500; letter-spacing:-.01em; margin:0 0 6px;
-    color:var(--purple-dk);
+    font-family:var(--serif); font-size:44px; font-weight:400; letter-spacing:-.01em; margin:0 0 6px;
+    color:var(--title); font-variant-numeric:tabular-nums;
   }
   .traction-stat p{ margin:0; font-size:13.5px; color:var(--body); font-weight:600; }
 
@@ -567,6 +534,8 @@
   }
   .why-card h3{ font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.005em; }
   .why-card p{ font-size:13.8px; color:var(--body); margin:0; }
+
+  .why-cta{ display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:20px 32px; margin-top:56px; }
 
   /* ---------------- CONTACT ---------------- */
   .contact{ padding:144px 0 128px; background:var(--bg); color:var(--paper); }
@@ -612,6 +581,9 @@
   .lead-panel .btn-block{ margin-top:28px; }
   .lead-hint{ margin:14px 0 0; font-size:13px; color:var(--label); }
   .lead-hint.is-error{ color:var(--clay-dk); }
+  .lead-hint:empty{ display:none; }
+  .lead-privacy{ margin:16px 0 0; padding:14px 0 0; border-top:1px solid var(--line); font-size:12.5px; line-height:1.55; color:var(--label); }
+  .lead-privacy a{ color:var(--title); text-underline-offset:2px; }
   .lead-done-mark{ width:44px; height:44px; margin:0 0 24px; border-radius:50%; background:var(--purple-dk); display:grid; place-items:center; }
   .lead-done h3:focus{ outline:none; }
   .lead-done p{ margin:0 0 20px; max-width:44ch; font-size:16px; color:var(--body); }
@@ -625,11 +597,11 @@
   footer nav{ display:flex; gap:22px; flex-wrap:wrap; }
   footer nav a{ font-size:13.5px; color:var(--ink-faint); text-decoration:none; }
   footer nav a:hover{ color:#fff; }
-  .footer-fine{ font-family:var(--mono); font-size:11.5px; margin-top:20px; color:rgba(255,255,255,.3); text-align:center; }
+  .footer-fine{ font-family:var(--mono); font-size:11.5px; margin-top:20px; color:var(--ink-faint); text-align:center; }
 
   @media (max-width:640px){
     .hero{ padding:88px 0 72px; }
-    .about, .team, .services, .stack, .subul, .xp, .why{ padding:76px 0; }
+    .about, .team, .services, .paths, .xp, .why{ padding:76px 0; }
     .contact{ padding:76px 0 88px; }
   }
 
@@ -645,11 +617,10 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#subul">SUBUL</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#subul">SUBUL</a></li>
       <li><a href="#tech">Technology</a></li>
-      <li><a href="#stack">Stack</a></li>
       <li><a href="#xp">SUBUL XP</a></li>
       <li><a href="#contact" class="nav-cta">Talk to the team</a></li>
       <li><a href="../index.html" class="lang-switch">FR</a></li>
@@ -698,6 +669,47 @@
           <div class="profile-foot"><span>Skills validated in lab</span><span class="profile-tally">5/5</span></div>
         </div>
         <p class="hero-caption">Illustration · example profile</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUBUL: TWO PATHS ============ -->
+  <section class="paths" id="subul">
+    <div class="container">
+      <div class="paths-head" data-reveal>
+        <span class="eyebrow">One platform, two paths</span>
+        <h2>Dev4Caustaza builds SUBUL. Choose your path.</h2>
+        <p>SUBUL Learn trains tech talent hands-on, on real labs. SUBUL Jobs connects companies with that talent, based on skills validated in lab.</p>
+      </div>
+      <div class="paths-grid">
+        <article class="path path-hire" data-reveal>
+          <p class="path-tag"><span>I'm hiring</span><span>SUBUL Jobs</span></p>
+          <h3>Hire profiles proven in practice, not just on a CV.</h3>
+          <ol class="path-steps">
+            <li><strong>Describe the role</strong><span>Role, seniority, stack and timeline.</span></li>
+            <li><strong>A call within 48h</strong><span>To refine the need with the team.</span></li>
+            <li><strong>Meet the profiles</strong><span>Selected on their skills and availability.</span></li>
+          </ol>
+          <a href="#contact" class="btn btn-light">Describe a role<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+        <article class="path path-learn" data-reveal>
+          <p class="path-tag"><span>I want to learn</span><span>SUBUL Learn · SUBUL XP</span></p>
+          <h3>Learn by building, on real labs.</h3>
+          <ol class="path-steps">
+            <li><strong>Book a free lab</strong><span>No commitment, reply within 48h.</span></li>
+            <li><strong>Progress lab by lab</strong><span>Guided paths by domain and level, skill badges.</span></li>
+            <li><strong>Join SUBUL Jobs</strong><span>Matching with tech companies that are hiring.</span></li>
+          </ol>
+          <a href="lab.html" class="btn btn-primary">Book a free lab<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </article>
+      </div>
+      <div class="traction" data-reveal>
+        <span class="traction-label">SUBUL by the numbers</span>
+        <div class="traction-row">
+          <div class="traction-stat"><h3>320</h3><p>SUBUL users</p></div>
+          <div class="traction-stat"><h3>457</h3><p>Labs completed</p></div>
+          <div class="traction-stat"><h3>14</h3><p>Companies engaged</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -775,122 +787,41 @@
     </div>
   </section>
 
-  <!-- ============ SUBUL ============ -->
-  <section class="subul" id="subul">
-    <div class="container">
-      <div class="subul-head" data-reveal>
-        <div>
-          <span class="eyebrow" style="color:var(--clay);">Our product</span>
-          <h2>SUBUL — our SaaS platform, built and owned end-to-end.</h2>
-          <p>Dev4Caustaza is a product company&nbsp;: SUBUL is the software we build and own, not a service delivered to a client. One platform to build in-demand tech skills, then connect directly with the companies that are hiring.</p>
-        </div>
-      </div>
-      <div class="subul-grid">
-        <div class="subul-card learn" data-reveal>
-          <span class="tag">SUBUL · EdTech</span>
-          <h3>SUBUL Learn</h3>
-          <p>Hands-on, certified learning paths in AI, Cloud and Cybersecurity, designed to take you from beginner to employable, fast.</p>
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Guided paths by domain and level</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hands-on labs on real-world cases</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Progress tracking and skill badges</li>
-          </ul>
-          <a href="#xp" class="btn">See SUBUL XP labs</a>
-        </div>
-        <div class="subul-card jobs" data-reveal>
-          <span class="tag">SUBUL · JobTech</span>
-          <h3>SUBUL Jobs</h3>
-          <p>Smart matching between talent trained on SUBUL Learn and tech companies looking for operational profiles.</p>
-          <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Profiles verified by practice, not just a CV</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Matching by skills and availability</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A simplified hiring pipeline for companies</li>
-          </ul>
-          <a href="#contact" class="btn">Hire via SUBUL</a>
-        </div>
-      </div>
-      <div class="traction" data-reveal>
-        <span class="traction-label">SUBUL by the numbers</span>
-        <div class="traction-row">
-          <div class="traction-stat"><h3>320</h3><p>SUBUL users</p></div>
-          <div class="traction-stat"><h3>457</h3><p>Labs completed</p></div>
-          <div class="traction-stat"><h3>14</h3><p>Companies engaged</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ TECHNOLOGY ============ -->
   <section class="services grain" id="tech">
     <div class="container">
       <div class="sec-head on-dark" data-reveal>
         <span class="eyebrow">Technology</span>
-        <h2>AI, Cloud and Cybersecurity at the core of SUBUL.</h2>
-        <p>These are not service offerings: they are the building blocks we use to build SUBUL, and the skills SUBUL teaches.</p>
+        <h2>The technology behind SUBUL, and inside its labs.</h2>
+        <p>These aren't service offerings: they're the building blocks we use to build SUBUL, and the skills SUBUL teaches.</p>
       </div>
-      <div class="service-grid">
-        <div class="service-card" data-reveal>
-          <span class="service-index">01</span>
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
-          </div>
+      <div class="tech-grid">
+        <div class="tech-col" data-reveal>
+          <p class="tech-index">01</p>
           <h3>Artificial Intelligence</h3>
-          <p>The language models, AI agents and data/ML pipelines that run SUBUL, including SUBUL Jobs' skills-based matching, optimized for GPU-accelerated compute.</p>
-          <div class="service-tags"><span>AI Agents</span><span>Matching</span><span>MLOps</span></div>
+          <p>Language models, AI agents and ML pipelines that run SUBUL, including SUBUL Jobs' skills-based matching.</p>
+          <ul class="tech-tools"><li>RAG</li><li>LLM Agents · LangGraph</li><li>MCP</li><li>Vision-Language Models</li><li>Vector DB</li></ul>
         </div>
-        <div class="service-card" data-reveal>
-          <span class="service-index">02</span>
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4-2A5 5 0 0 0 5 18h12.5z"/></svg>
-          </div>
-          <h3>Cloud Computing</h3>
-          <p>SUBUL's infrastructure: scalable architecture, containerization and DevOps automation, plus the AWS and Azure lab environments our learners use.</p>
-          <div class="service-tags"><span>DevOps</span><span>Kubernetes</span><span>Infrastructure as Code</span></div>
-        </div>
-        <div class="service-card" data-reveal>
-          <span class="service-index">03</span>
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3z"/></svg>
-          </div>
-          <h3>Cybersecurity</h3>
-          <p>Security by design for the platform and learner data, plus hands-on tracks in auditing, penetration testing and monitoring inside SUBUL Learn.</p>
-          <div class="service-tags"><span>Security by design</span><span>Pentest labs</span><span>SIEM</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ STACK ============ -->
-  <section class="stack" id="stack">
-    <div class="container">
-      <div class="sec-head" data-reveal>
-        <span class="eyebrow">Our tech stack</span>
-        <h2>The real tooling behind SUBUL Learn.</h2>
-        <p>150 hands-on labs, spanning AWS and Microsoft Azure — the same tooling we use to build SUBUL itself.</p>
-      </div>
-      <div class="stack-providers" data-reveal>
-        <span class="stack-provider">Amazon Web Services (AWS)</span>
-        <span class="stack-provider">Microsoft Azure</span>
-      </div>
-      <div class="stack-grid">
-        <div class="stack-group" data-reveal>
-          <h3>Artificial Intelligence</h3>
-          <div class="service-tags"><span>RAG</span><span>LLM Agents</span><span>LangGraph</span><span>CrewAI</span><span>MCP</span><span>Whisper</span><span>Vision-Language Models</span><span>Vector DB</span></div>
-        </div>
-        <div class="stack-group" data-reveal>
+        <div class="tech-col" data-reveal>
+          <p class="tech-index">02</p>
           <h3>Cloud &amp; DevOps</h3>
-          <div class="service-tags"><span>Docker</span><span>Kubernetes (Helm, k3s, ArgoCD)</span><span>Terraform</span><span>Ansible</span><span>CI/CD</span><span>Grafana</span><span>Prometheus</span></div>
+          <p>SUBUL's infrastructure and the AWS and Azure lab environments: scalable architecture, containers, automation.</p>
+          <ul class="tech-tools"><li>Kubernetes · Helm · ArgoCD</li><li>Terraform · Ansible</li><li>Docker</li><li>CI/CD</li><li>Prometheus · Grafana</li></ul>
         </div>
-        <div class="stack-group" data-reveal>
+        <div class="tech-col" data-reveal>
+          <p class="tech-index">03</p>
           <h3>Data Engineering</h3>
-          <div class="service-tags"><span>Apache Kafka</span><span>Apache Spark</span><span>dbt</span><span>Airflow</span><span>PostgreSQL</span><span>Apache Superset</span></div>
+          <p>The platform's data flows and the data labs: ingestion, transformation, orchestration, visualization.</p>
+          <ul class="tech-tools"><li>Apache Kafka</li><li>Apache Spark</li><li>dbt · Airflow</li><li>PostgreSQL</li><li>Apache Superset</li></ul>
         </div>
-        <div class="stack-group" data-reveal>
+        <div class="tech-col" data-reveal>
+          <p class="tech-index">04</p>
           <h3>Cybersecurity</h3>
-          <div class="service-tags"><span>SIEM (Wazuh)</span><span>MITRE ATT&amp;CK</span><span>Zero Trust</span><span>HashiCorp Vault</span><span>Keycloak / SSO</span></div>
+          <p>Platform and data security by design, plus labs in auditing, penetration testing and monitoring.</p>
+          <ul class="tech-tools"><li>SIEM · Wazuh</li><li>MITRE ATT&amp;CK</li><li>Zero Trust</li><li>HashiCorp Vault</li><li>Keycloak · SSO</li></ul>
         </div>
       </div>
-      <p class="stack-source">Full catalogue of all 150 labs&nbsp;: <a href="https://sujets.subul.uk" target="_blank" rel="noopener">sujets.subul.uk</a></p>
+      <p class="tech-foot"><span>150 hands-on labs · Amazon Web Services · Microsoft Azure</span><a href="https://sujets.subul.uk" target="_blank" rel="noopener">Full lab catalogue <span aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -948,6 +879,10 @@
           <p>SUBUL grows the Tunisian tech ecosystem by linking training directly to jobs.</p>
         </div>
       </div>
+      <div class="why-cta" data-reveal>
+        <a href="#contact" class="btn btn-primary">Describe a role<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="lab.html" class="text-link text-link-ink">Book a free lab <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -986,6 +921,7 @@
           </div>
           <button type="submit" class="btn btn-primary btn-block">Get profiles<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <p class="lead-hint" id="cfHint" aria-live="polite"></p>
+          <p class="lead-privacy" id="cfPrivacy"></p>
         </form>
         <div class="lead-done" id="cfDone" hidden>
           <div class="lead-done-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -1004,11 +940,10 @@
     <div class="footer-inner">
       <a href="#top" class="brand" style="color:#fff;text-decoration:none;"><span class="brand-mark"><svg width="21" height="21" viewBox="0 0 1000 1000" fill="none"><g transform="translate(24,0)"><path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/><path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/></g></svg></span>Dev4Caustaza</a>
       <nav>
+        <a href="#subul">SUBUL</a>
         <a href="#about">About</a>
         <a href="#team">Team</a>
-        <a href="#subul">SUBUL</a>
         <a href="#tech">Technology</a>
-        <a href="#stack">Stack</a>
         <a href="#xp">SUBUL XP</a>
         <a href="#contact">Contact</a>
         <a href="../index.html">Version française</a>
@@ -1030,7 +965,10 @@ const CALENDAR_URL  = "";  // booking link (Cal.com, Calendly…). Empty = link 
 
 const T = {
   hintWhatsApp: "Sent via WhatsApp: your request will open ready to send.",
-  hintEndpoint: "We only use your details to get back to you.",
+  hintEndpoint: "",
+  privacyWhatsApp: "Privacy: nothing is sent until you send the message in WhatsApp (a Meta service). Your details are only used to get back to you about this hire.",
+  privacyEndpoint: "Privacy: your details go to the Dev4Caustaza team and are only used to get back to you about this hire.",
+  privacyRights: "To access or delete them:",
   sending: "Sending…",
   error: "Sending failed. Try again or email us at ",
   doneSentTitle: "Request received.",
@@ -1100,6 +1038,11 @@ const cfHint    = document.getElementById("cfHint");
 const cfDone    = document.getElementById("cfDone");
 const firstStep = document.querySelector(".next-steps li");
 cfHint.textContent = LEAD_ENDPOINT ? T.hintEndpoint : T.hintWhatsApp;
+const cfPrivacy = document.getElementById("cfPrivacy");
+const privacyMail = document.createElement("a");
+privacyMail.href = "mailto:" + EMAIL;
+privacyMail.textContent = EMAIL;
+cfPrivacy.append((LEAD_ENDPOINT ? T.privacyEndpoint : T.privacyWhatsApp) + " " + T.privacyRights + " ", privacyMail, ".");
 
 function showDone(title, text, link){
   cf.hidden = true;

@@ -6,6 +6,7 @@
   ---------------------------------------------------------------
   CONFIGURATION (voir le <script> en bas) :
     WHATSAPP  -> numéro destinataire, format international sans "+"
+    EMAIL     -> adresse proposée à celles et ceux qui n'ont pas WhatsApp
     ENDPOINT  -> URL qui reçoit une copie JSON (facultatif)
                  vide = aucune copie envoyée, WhatsApp s'ouvre quand même
 -->
@@ -27,21 +28,25 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:        #291240;
+    --bg:        #0E0D12;
+    --paper:     #F6F4EF;
     --card:      #FFFFFF;
-    --title:     #1A0E2E;
-    --body:      #5C5568;
-    --label:     #6E6880;
-    --line:      #E6E1EC;
-    --purple:    #6D28D9;
-    --purple-dk: #4C1D95;
-    --purple-lt: #F4EAFE;
-    --magenta:   #D6006E;
-    --magenta-lt:#FBE8F1;
+    --title:     #0E0D12;
+    --body:      #5E5A52;
+    --label:     #6F6A61;
+    --line:      #DDD8CD;
+    --purple:    #5B3EE0;
+    --purple-dk: #3D2AA8;
+    --purple-lt: #EEECF8;
+    --clay:      #B4401E;
+    --clay-lt:   #F6E6DF;
+    --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Geist", system-ui, sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
   }
 
   *{ box-sizing:border-box; }
@@ -51,7 +56,9 @@
     margin:0;
     padding:34px 18px 60px;
     background:var(--bg);
-    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+    font-family:var(--sans);
+    font-synthesis-weight:none;
+    -webkit-font-smoothing:antialiased;
     color:var(--title);
     line-height:1.55;
   }
@@ -62,7 +69,7 @@
     position:absolute;
     top:26px; right:-9px; bottom:26px;
     width:9px;
-    background:var(--magenta);
+    background:var(--clay);
     border-radius:0 4px 4px 0;
   }
   @media (max-width:600px){ .wrap::after{ right:-6px; width:6px; } }
@@ -71,18 +78,20 @@
     position:relative;
     z-index:1;
     background:var(--card);
-    border-radius:6px;
+    border-radius:12px;
     padding:38px 34px 34px;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
   }
   @media (max-width:600px){ .card{ padding:30px 22px 28px; } }
 
   h1{
-    font-size:clamp(28px,7vw,36px);
-    font-weight:800;
-    letter-spacing:-.03em;
-    line-height:1.1;
+    font-family:var(--serif);
+    font-size:clamp(38px,8vw,50px);
+    font-weight:400;
+    letter-spacing:-.01em;
+    line-height:1;
     margin:0 0 10px;
-    color:var(--magenta);
+    color:var(--clay);
   }
   .sub{ margin:0; color:var(--body); font-size:15.5px; }
 
@@ -91,14 +100,15 @@
   .field{ margin-bottom:26px; }
   .lab{
     display:block;
-    font-size:12px;
+    font-family:var(--mono);
+    font-size:11.5px;
     font-weight:600;
-    letter-spacing:.13em;
+    letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--label);
     margin-bottom:11px;
   }
-  .hint{ text-transform:none; letter-spacing:0; font-weight:500; color:#948DA3; }
+  .hint{ text-transform:none; letter-spacing:0; font-weight:500; color:var(--label); }
 
   .duo{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:520px){ .duo{ grid-template-columns:1fr; gap:26px; } }
@@ -111,11 +121,11 @@
     font-weight:500;
     color:var(--title);
     background:#fff;
-    border:1.5px solid var(--line);
-    border-radius:6px;
+    border:1px solid var(--line);
+    border-radius:4px;
     transition:border-color .14s, box-shadow .14s;
   }
-  input::placeholder{ color:#AFA8BC; font-weight:400; }
+  input::placeholder{ color:var(--label); font-weight:400; }
 
   select{
     appearance:none;
@@ -128,14 +138,14 @@
     background-repeat:no-repeat;
     padding-right:42px;
   }
-  select:invalid{ color:#AFA8BC; font-weight:400; }
+  select:invalid{ color:var(--label); font-weight:400; }
 
   input:focus,select:focus{
     outline:none;
     border-color:var(--purple);
-    box-shadow:0 0 0 3px rgba(109,40,217,.14);
+    box-shadow:0 0 0 3px rgba(91,62,224,.16);
   }
-  input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--magenta); }
+  input[aria-invalid=true],select[aria-invalid=true]{ border-color:var(--clay); }
 
   .opts{ display:flex; flex-direction:column; gap:10px; }
   .opts input{ position:absolute; opacity:0; width:0; height:0; }
@@ -148,8 +158,8 @@
     font-weight:600;
     color:var(--purple);
     background:#fff;
-    border:1.5px solid var(--line);
-    border-radius:6px;
+    border:1px solid var(--line);
+    border-radius:4px;
     cursor:pointer;
     transition:background .14s, border-color .14s;
   }
@@ -158,17 +168,17 @@
     flex:none;
     width:19px; height:19px;
     border-radius:50%;
-    border:2px solid #C9C2D4;
+    border:2px solid #C4BDAF;
     transition:border-color .14s, border-width .14s, background .14s;
   }
-  .opts label:hover{ border-color:#CDBFE4; }
+  .opts label:hover{ border-color:#C4BDAF; }
   .opts input:checked + label{
     background:var(--purple-lt);
     border-color:var(--purple);
     color:var(--purple-dk);
   }
   .opts input:checked + label::before{ border-color:var(--purple-dk); border-width:6px; }
-  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(109,40,217,.25); }
+  .opts input:focus-visible + label{ box-shadow:0 0 0 3px rgba(91,62,224,.28); }
 
   /* cases à cocher (choix multiple) */
   .opts.multi label::before{ border-radius:5px; }
@@ -182,9 +192,9 @@
     display:none;
     margin-top:11px;
     padding:13px 16px;
-    background:var(--magenta-lt);
-    border-radius:6px;
-    color:var(--magenta);
+    background:var(--clay-lt);
+    border-radius:4px;
+    color:var(--clay);
     font-size:15px;
     font-weight:600;
   }
@@ -199,13 +209,13 @@
     color:#fff;
     background:var(--purple-dk);
     border:0;
-    border-radius:6px;
+    border-radius:4px;
     cursor:pointer;
-    transition:background .15s, transform .07s;
+    transition:background .2s, transform .07s;
   }
-  button:hover:not(:disabled){ background:var(--magenta); }
+  button:hover:not(:disabled){ background:#2F2085; }
   button:active:not(:disabled){ transform:translateY(1px); }
-  button:focus-visible{ outline:3px solid var(--magenta); outline-offset:2px; }
+  button:focus-visible{ outline:3px solid var(--clay); outline-offset:2px; }
   button:disabled{ opacity:.55; cursor:progress; }
 
   .fine{ margin:14px 0 0; text-align:center; font-size:12.5px; color:var(--label); }
@@ -216,20 +226,21 @@
   .step-dot .dot-num{
     width:30px; height:30px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    font-size:13px; font-weight:800; color:#AFA8BC;
-    background:#F4F1F8; border:2px solid var(--line);
+    font-family:var(--mono); font-size:13px; font-weight:600; color:var(--label);
+    background:var(--paper); border:2px solid var(--line);
     transition:background .18s, border-color .18s, color .18s;
   }
   .step-dot .dot-label{
-    font-size:10.5px; font-weight:700; color:var(--label);
-    text-transform:uppercase; letter-spacing:.06em; white-space:nowrap;
+    font-family:var(--mono);
+    font-size:10px; font-weight:600; color:var(--label);
+    text-transform:uppercase; letter-spacing:.05em; white-space:nowrap;
   }
   .step-dot.active .dot-num{ background:var(--purple-dk); border-color:var(--purple-dk); color:#fff; }
   .step-dot.active .dot-label{ color:var(--purple-dk); }
-  .step-dot.done .dot-num{ background:var(--magenta); border-color:var(--magenta); color:#fff; }
-  .step-dot.done .dot-label{ color:var(--magenta); }
+  .step-dot.done .dot-num{ background:var(--clay); border-color:var(--clay); color:#fff; }
+  .step-dot.done .dot-label{ color:var(--clay); }
   .step-line{ flex:1; height:2px; background:var(--line); margin:14px 6px 0; transition:background .18s; }
-  .step-line.done{ background:var(--magenta); }
+  .step-line.done{ background:var(--clay); }
   @media (max-width:480px){ .step-dot .dot-label{ display:none; } }
 
   .step{ display:none; }
@@ -241,9 +252,17 @@
   .nav button{ width:auto; flex:1; }
   .btn-back{
     background:#fff; color:var(--purple-dk);
-    border:1.5px solid var(--line);
+    border:1px solid var(--line);
   }
   .btn-back:hover:not(:disabled){ background:var(--purple-lt); border-color:var(--purple); color:var(--purple-dk); }
+
+  .notice{ margin:0 0 26px; padding:16px 18px; border-radius:4px; background:var(--paper); border:1px solid var(--line); font-size:14px; color:var(--body); }
+  .notice p{ margin:0; }
+  .notice p + p{ margin-top:8px; }
+  .notice strong{ color:var(--title); }
+  .notice a, .privacy a{ color:var(--purple-dk); text-underline-offset:2px; }
+  .help{ margin:8px 0 0; font-size:13px; color:var(--label); }
+  .privacy{ margin:0 0 22px; padding:14px 0 0; border-top:1px solid var(--line); font-size:12.5px; line-height:1.55; color:var(--label); }
 
   @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
 </style>
@@ -252,11 +271,23 @@
 <div class="wrap">
   <div class="card">
 
-    <a href="index.html" style="display:inline-block;margin-bottom:18px;font-size:13px;font-weight:700;color:var(--purple-dk);text-decoration:none;">&larr; Dev4Caustaza / SUBUL XP</a>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--purple-dk);text-decoration:none;">
+        <svg width="22" height="22" viewBox="0 0 1000 1000" fill="none" style="flex:none;"><rect width="1000" height="1000" rx="220" fill="#3D2AA8"/><g transform="translate(24,0)"><path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/><path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/></g></svg>
+        &larr; Dev4Caustaza / SUBUL XP
+      </a>
+      <a href="en/lab.html" style="font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--purple-dk);text-decoration:none;border:1px solid var(--line);border-radius:7px;padding:5px 9px;">EN</a>
+    </div>
 
     <h1>Formulaire</h1>
 
     <hr>
+
+    <div class="notice">
+      <p><strong>Comment ça se passe&nbsp;:</strong> trois étapes, puis ta demande s'ouvre dans WhatsApp, prête à être envoyée à l'équipe SUBUL XP.</p>
+      <p class="notice-send" data-whatsapp="Rien n'est envoyé tant que tu n'as pas envoyé le message dans WhatsApp." data-endpoint="En validant, ta demande est aussi transmise directement à l'équipe."></p>
+      <p>Pas de WhatsApp&nbsp;? Écris-nous à <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>.</p>
+    </div>
 
     <div class="stepper" aria-hidden="true">
       <div class="step-dot active" data-dot="1">
@@ -298,9 +329,12 @@
 
         <div class="field">
           <label class="lab" for="whatsapp">Ton numéro WhatsApp</label>
-          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+216 ** *** ***">
+          <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+216 ** *** ***" aria-describedby="h-whatsapp">
+          <p class="help" id="h-whatsapp">Pour te recontacter au sujet de ton lab.</p>
           <p class="err" id="e-whatsapp">Indique un numéro WhatsApp joignable.</p>
         </div>
+
+        <p class="privacy">Confidentialité&nbsp;: tes coordonnées servent uniquement à organiser ton lab et à te recontacter. Le message passe par WhatsApp (service de Meta). Pour accéder à tes données ou les faire supprimer&nbsp;: <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>.</p>
 
         <div class="nav">
           <button type="button" class="btn-next" data-next>Suivant</button>
@@ -387,18 +421,23 @@
    CONFIGURATION
    ========================================================== */
 const WHATSAPP = "32492493852";   // format international, sans "+"
+const EMAIL    = "contact@dev4caustaza.com";
 const ENDPOINT = "";              // copie JSON (facultatif)
 
 /* Le message pré-rempli. Modifie librement ce texte. */
 function buildMessage(d){
   return "Bonjour Subul XP ! Je m'appelle " + d.prenom + " " + d.nom + ". " +
-         "Je suis " + d.statut + " par la résidence " + d.domaines + ". " +
+         "Je suis " + d.statut + ", intéressé·e par la résidence " + d.domaines + ". " +
          "Mon niveau est " + d.niveau + ". " +
          "Je souhaite organiser mon premier lab gratuit.";
 }
 
 const $ = id => document.getElementById(id);
 const f = $("f");
+
+document.querySelectorAll(".mail-link").forEach(a => { a.href = "mailto:" + EMAIL; a.textContent = EMAIL; });
+const noticeSend = document.querySelector(".notice-send");
+noticeSend.textContent = ENDPOINT ? noticeSend.dataset.endpoint : noticeSend.dataset.whatsapp;
 
 /* "A", "A et B", "A, B et C" */
 function joinFr(list){
@@ -528,6 +567,7 @@ f.addEventListener("submit", e => {
   if (ENDPOINT){
     fetch(ENDPOINT, {
       method:"POST",
+      keepalive:true,
       headers:{ "Content-Type":"application/json", "Accept":"application/json" },
       body: JSON.stringify({ ...data, message: texte })
     }).catch(() => {});
