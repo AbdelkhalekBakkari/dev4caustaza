@@ -48,9 +48,9 @@
   "sameAs": ["https://sujets.subul.uk"]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="../fonts/geist-latin-gyByhwUx.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/instrument-serif-latin-jizBRFtN.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 
 <style>
   :root{
@@ -60,8 +60,8 @@
     --card:      #FFFFFF;
     --sunken:    #ECE8DF;
     --title:     #0E0D12;
-    --body:      #5E5A52;
-    --label:     #6F6A61;
+    --body:      #4A463F;
+    --label:     #5E5A52;
     --line:      #DDD8CD;
     --line-dk:   rgba(246,244,239,.12);
     --purple:    #5B3EE0;
@@ -70,9 +70,7 @@
     --clay:      #B4401E;
     --clay-dk:   #8F3217;
     --clay-lt:   #F6E6DF;
-    --clay-soft: #E8A58A;
-    --cyan:      #1C9C93;
-    --signal:    #C6F432;
+    --indigo-soft:#B9AEF5;
     --grad:      var(--purple-dk);
     --ink-soft:  rgba(246,244,239,.72);
     --ink-faint: rgba(246,244,239,.5);
@@ -115,12 +113,14 @@
     display:inline-flex; align-items:center; gap:9px;
     font-family:var(--mono);
     font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--clay);
+    color:var(--purple-dk);
   }
-  .eyebrow::before{ content:""; width:16px; height:1.5px; background:var(--clay); border-radius:2px; }
+  .eyebrow::before{ content:""; width:16px; height:1.5px; background:var(--purple-dk); border-radius:2px; }
+  .sec-head.on-dark .eyebrow, .xp-inner .eyebrow{ color:var(--indigo-soft); }
+  .sec-head.on-dark .eyebrow::before, .xp-inner .eyebrow::before{ background:var(--indigo-soft); }
 
   /* ---------------- REVEAL ---------------- */
-  [data-reveal]{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+  [data-reveal]{ opacity:0; transform:translateY(12px); transition:opacity .45s cubic-bezier(.2,.7,.2,1), transform .45s cubic-bezier(.2,.7,.2,1); }
   [data-reveal].in{ opacity:1; transform:none; }
   @media (prefers-reduced-motion:reduce){ [data-reveal]{ opacity:1; transform:none; } }
   .tech-grid > [data-reveal]:nth-child(2){ transition-delay:.06s; }
@@ -228,6 +228,7 @@
     border-bottom:1px solid rgba(246,244,239,.32); padding-bottom:2px; transition:border-color .24s;
   }
   .text-link:hover{ border-color:currentColor; }
+  .text-link:focus-visible, .nav-links a:focus-visible, footer a:focus-visible, .contact-alt a:focus-visible{ outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
   .text-link-ink{ color:var(--title); border-color:rgba(14,13,18,.3); }
 
   /* ---------------- HERO ---------------- */
@@ -235,15 +236,8 @@
     display:flex; align-items:center; gap:10px; margin:0 0 28px;
     font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft);
   }
-  .kicker-dot{ flex:none; width:7px; height:7px; border-radius:50%; background:var(--signal); box-shadow:0 0 0 4px rgba(198,244,50,.12); }
+  .kicker-dot{ flex:none; width:7px; height:7px; border-radius:50%; background:var(--indigo-soft); box-shadow:0 0 0 4px rgba(185,174,245,.16); }
   .hero{ padding:120px 0 104px; background:var(--bg); color:var(--paper); overflow:hidden; }
-  .hero-cols{
-    position:absolute; top:0; bottom:0; left:50%; transform:translateX(-50%);
-    width:calc(min(1180px, 100%) - 48px); pointer-events:none;
-    background:linear-gradient(90deg, rgba(246,244,239,.05) 1px, transparent 1px) 0 0 / calc(100% / 12) 100%;
-    border-right:1px solid rgba(246,244,239,.05);
-    -webkit-mask-image:linear-gradient(#000 50%, transparent); mask-image:linear-gradient(#000 50%, transparent);
-  }
   .hero .container{ position:relative; z-index:1; }
   .hero-grid{ display:grid; grid-template-columns:7fr 5fr; gap:72px; align-items:center; }
   .hero-grid > *{ min-width:0; }
@@ -252,7 +246,7 @@
     font-family:var(--serif); font-weight:400; font-size:clamp(46px,5.4vw,78px);
     line-height:.98; letter-spacing:-.015em; margin:0 0 28px; text-wrap:balance;
   }
-  .hero h1 em{ font-style:italic; color:var(--clay-soft); }
+  .hero h1 em{ font-style:italic; color:var(--indigo-soft); }
   .hero .lead{ font-size:18px; line-height:1.6; color:var(--ink-soft); max-width:52ch; margin:0 0 40px; }
   .hero-actions{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:20px 16px; }
   .hero-choice{ display:flex; flex-direction:column; gap:10px; }
@@ -264,12 +258,35 @@
     .hero-choice{ flex:1 1 100%; }
     .hero-choice .btn{ justify-content:space-between; }
   }
-  .hero-proof{
-    list-style:none; margin:64px 0 0; padding:24px 0 0; border-top:1px solid var(--line-dk);
-    display:flex; flex-wrap:wrap; gap:24px 48px;
+  /* the thread: lab → talent → validated skill → employer */
+  .thread{ position:relative; list-style:none; margin:56px 0 0; padding:0; display:grid; grid-template-columns:repeat(4,1fr); }
+  .thread::before{
+    content:""; position:absolute; left:5px; right:0; top:27px; height:1.5px;
+    background:linear-gradient(90deg, var(--indigo-soft), rgba(185,174,245,.2));
+    transform:scaleX(0); transform-origin:left; transition:transform .7s cubic-bezier(.2,.7,.2,1) .25s;
   }
-  .hero-proof li{ display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--ink-soft); }
-  .hero-proof strong{ font-family:var(--serif); font-weight:400; font-size:44px; line-height:1; color:var(--paper); font-variant-numeric:tabular-nums; }
+  .thread li{ position:relative; display:flex; flex-direction:column; gap:6px; padding:44px 16px 0 0; font-size:13px; color:var(--ink-soft); }
+  .thread li::before{
+    content:""; position:absolute; left:0; top:22px; width:12px; height:12px; box-sizing:border-box; border-radius:50%;
+    border:1.5px solid var(--indigo-soft); background:var(--bg);
+    transform:scale(0); transition:transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .thread li:last-child::before{ background:var(--indigo-soft); }
+  .in .thread::before, .in .thread li::before{ transform:none; }
+  .in .thread li:nth-child(1)::before{ transition-delay:.25s; }
+  .in .thread li:nth-child(2)::before{ transition-delay:.45s; }
+  .in .thread li:nth-child(3)::before{ transition-delay:.65s; }
+  .in .thread li:nth-child(4)::before{ transition-delay:.85s; }
+  .thread-stage{ position:absolute; top:0; left:0; font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo-soft); white-space:nowrap; }
+  .thread strong{ font-family:var(--serif); font-weight:400; font-size:44px; line-height:1; color:var(--paper); font-variant-numeric:tabular-nums; }
+  @media (max-width:700px){
+    .thread{ grid-template-columns:1fr; gap:22px; margin-top:44px; }
+    .thread::before{ top:6px; bottom:6px; left:5px; right:auto; width:1.5px; height:auto; background:linear-gradient(180deg, var(--indigo-soft), rgba(185,174,245,.2)); transform:scaleY(0); transform-origin:top; }
+    .thread li{ padding:0 0 0 30px; }
+    .thread li::before{ top:2px; }
+    .thread-stage{ position:static; }
+    .thread strong{ font-size:34px; }
+  }
 
   .hero-visual{ perspective:1800px; }
   .hero-caption{ margin:20px 0 0; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
@@ -332,7 +349,7 @@
   .about-list svg{ flex:none; margin-top:2px; }
 
   .about-panel{
-    background:linear-gradient(155deg,#F3EDFF,#F8ECE4 130%);
+    background:linear-gradient(155deg,#F1EEFB,#F6F4EF 130%);
     border:1px solid #ECE3FB;
     border-radius:22px; padding:38px;
     display:grid; gap:24px;
@@ -387,20 +404,20 @@
     font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--label);
   }
   .team-role::before{ content:""; flex:none; width:7px; height:7px; border-radius:50%; background:var(--dept); }
-  .team-card[data-dept="software"]{ --dept:var(--clay); }
-  .team-card[data-dept="devops"]{ --dept:var(--cyan); }
-  .team-card[data-dept="ai"]{ --dept:var(--purple); }
+  .team-card[data-dept="software"]{ --dept:var(--purple-dk); }
+  .team-card[data-dept="devops"]{ --dept:#6E5FD9; }
+  .team-card[data-dept="ai"]{ --dept:#A79BEF; }
   .team-card-lead{
     min-height:220px; justify-content:flex-end; gap:10px;
     padding:30px 32px; border-radius:20px; border:0; overflow:hidden;
     background:
-      radial-gradient(420px 260px at 100% 0%, rgba(180,64,30,.38), transparent 65%),
+      radial-gradient(420px 260px at 100% 0%, rgba(124,111,224,.30), transparent 65%),
       radial-gradient(380px 300px at 0% 100%, rgba(91,62,224,.42), transparent 60%),
       var(--bg);
     box-shadow:0 30px 60px -30px rgba(11,10,14,.55);
   }
   .team-card-lead .team-name{ font-size:32px; font-weight:500; color:#fff; }
-  .team-card-lead .team-role{ color:#E8A58A; }
+  .team-card-lead .team-role{ color:var(--indigo-soft); }
   .team-card-lead .team-role::before{ display:none; }
   .team-card-index{
     position:absolute; top:22px; right:26px;
@@ -435,7 +452,8 @@
   }
   @media (max-width:960px){ .tech-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:560px){ .tech-grid{ grid-template-columns:1fr; } }
-  .tech-col{ display:flex; flex-direction:column; padding:32px 28px; background:var(--bg); }
+  .tech-col{ display:flex; flex-direction:column; padding:32px 28px; background:var(--bg); transition:background .24s cubic-bezier(.2,.7,.2,1); }
+  @media (hover:hover){ .tech-col:hover{ background:#16141C; } }
   .tech-index{ margin:0 0 36px; font-family:var(--mono); font-size:12px; color:var(--ink-faint); }
   .tech-col h3{ margin:0 0 12px; font-family:var(--serif); font-weight:400; font-size:28px; line-height:1.1; color:var(--paper); }
   .tech-col p{ margin:0 0 28px; font-size:14.5px; color:var(--ink-soft); }
@@ -444,7 +462,7 @@
     display:grid; gap:9px; font-family:var(--mono); font-size:12.5px; color:var(--paper);
   }
   .tech-tools li{ display:flex; align-items:center; gap:10px; }
-  .tech-tools li::before{ content:""; flex:none; width:4px; height:4px; border-radius:50%; background:var(--signal); }
+  .tech-tools li::before{ content:""; flex:none; width:4px; height:4px; border-radius:50%; background:var(--indigo-soft); }
   .tech-foot{
     display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; margin:28px 0 0;
     font-family:var(--mono); font-size:12.5px; color:var(--ink-soft);
@@ -458,7 +476,8 @@
   .paths-head p{ margin:0; max-width:62ch; font-size:17px; color:var(--body); }
   .paths-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
   @media (max-width:860px){ .paths-grid{ grid-template-columns:1fr; } }
-  .path{ display:flex; flex-direction:column; padding:40px; border-radius:12px; }
+  .path{ display:flex; flex-direction:column; padding:40px; border-radius:12px; transition:transform .24s cubic-bezier(.2,.7,.2,1), box-shadow .24s cubic-bezier(.2,.7,.2,1); }
+  @media (hover:hover){ .path:hover{ transform:translateY(-3px); box-shadow:0 28px 56px -32px rgba(14,13,18,.45); } }
   .path-hire{ background:var(--bg); color:var(--paper); }
   .path-learn{ background:var(--card); color:var(--title); border:1px solid var(--line); }
   .path-tag{
@@ -468,40 +487,49 @@
   }
   .path-tag span + span{ letter-spacing:.06em; text-transform:none; }
   .path-hire .path-tag span + span{ color:var(--ink-soft); }
-  .path-learn .path-tag{ border-color:var(--line); color:var(--clay); }
+  .path-learn .path-tag{ border-color:var(--line); color:var(--purple-dk); }
   .path-learn .path-tag span + span{ color:var(--label); }
   .path h3{ margin:0 0 32px; font-family:var(--serif); font-weight:400; font-size:clamp(28px,2.6vw,36px); line-height:1.1; letter-spacing:-.005em; }
-  .path-steps{ list-style:none; margin:0 0 40px; padding:0; counter-reset:step; }
-  .path-steps li{
-    display:grid; grid-template-columns:40px 1fr; gap:2px 12px; padding:16px 0;
-    border-top:1px solid var(--line-dk); counter-increment:step;
+  .path-steps{ position:relative; list-style:none; margin:0 0 40px; padding:0; --thread:var(--purple-dk); --node-bg:var(--card); }
+  .path-hire .path-steps{ --thread:var(--indigo-soft); --node-bg:var(--bg); }
+  .path-steps::before{
+    content:""; position:absolute; left:5px; top:20px; bottom:28px; width:1.5px; background:var(--thread);
+    transform:scaleY(0); transform-origin:top; transition:transform .6s cubic-bezier(.2,.7,.2,1) .2s;
   }
-  .path-steps li::before{ content:"0" counter(step); grid-row:span 2; padding-top:3px; font-family:var(--mono); font-size:12px; }
+  .path-steps li{ position:relative; display:grid; grid-template-columns:32px 1fr; gap:2px 0; padding:12px 0; }
+  .path-steps li::before{
+    content:""; grid-row:span 2; position:relative; z-index:1; margin-top:5px;
+    width:12px; height:12px; box-sizing:border-box; border-radius:50%; border:1.5px solid var(--thread); background:var(--node-bg);
+  }
+  .path-steps li:last-child::before{ background:var(--thread); }
+  .path.in .path-steps::before{ transform:none; }
   .path-steps strong{ font-size:16px; font-weight:600; }
-  .path-steps span{ font-size:14px; }
-  .path-hire .path-steps li::before{ color:var(--signal); }
+  .path-steps span{ font-size:14.5px; }
   .path-hire .path-steps span{ color:var(--ink-soft); }
-  .path-learn .path-steps li{ border-color:var(--line); }
-  .path-learn .path-steps li::before{ color:var(--clay); }
   .path-learn .path-steps span{ color:var(--body); }
   .path .btn{ margin-top:auto; align-self:flex-start; }
   @media (max-width:560px){ .path{ padding:28px 22px; } }
 
-  .traction{
-    margin-top:48px; padding:40px 32px; border-radius:12px;
-    background:var(--card); border:1px solid var(--line);
+  /* where the two paths meet */
+  .paths-junction{ position:relative; padding-top:72px; text-align:center; }
+  .paths-junction p{ max-width:560px; margin-left:auto; margin-right:auto; }
+  .paths-junction::before{
+    content:""; position:absolute; top:0; height:44px; left:calc(25% - 6px); right:calc(25% - 6px);
+    border:1.5px solid var(--purple-dk); border-top:0; border-radius:0 0 18px 18px;
+    clip-path:inset(0 50% 0 50%); transition:clip-path .7s cubic-bezier(.2,.7,.2,1) .15s;
   }
-  .traction-label{
-    display:block; text-align:center; font-family:var(--mono); font-size:11.5px; font-weight:600;
-    letter-spacing:.12em; text-transform:uppercase; color:var(--purple-dk); margin:0 0 28px;
+  .paths-junction::after{
+    content:""; position:absolute; top:44px; left:50%; width:12px; height:12px; margin:-6px 0 0 -6px;
+    border-radius:50%; background:var(--purple-dk); box-shadow:0 0 0 5px var(--paper);
   }
-  .traction-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:center; }
-  @media (max-width:600px){ .traction-row{ grid-template-columns:1fr; gap:28px; } }
-  .traction-stat h3{
-    font-family:var(--serif); font-size:44px; font-weight:400; letter-spacing:-.01em; margin:0 0 6px;
-    color:var(--title); font-variant-numeric:tabular-nums;
+  .paths-junction.in::before{ clip-path:inset(0 0 0 0); }
+  .junction-title{ margin:0 0 8px; font-family:var(--serif); font-size:28px; line-height:1.1; color:var(--title); }
+  .junction-text{ margin:0; font-size:16px; color:var(--body); }
+  @media (max-width:860px){
+    .paths-junction{ padding-top:56px; }
+    .paths-junction::before{ left:50%; right:auto; width:1.5px; margin-left:-.75px; height:32px; border:0; border-radius:0; background:var(--purple-dk); clip-path:none; }
+    .paths-junction::after{ top:38px; }
   }
-  .traction-stat p{ margin:0; font-size:13.5px; color:var(--body); font-weight:600; }
 
   /* ---------------- XP PROGRAM ---------------- */
   .xp{ padding:128px 0; background:var(--purple-lt); }
@@ -512,7 +540,7 @@
   }
   .xp-inner::before{
     content:""; position:absolute; inset:0;
-    background:radial-gradient(520px 320px at 92% 8%, rgba(180,64,30,.35), transparent 60%);
+    background:radial-gradient(520px 320px at 92% 8%, rgba(91,62,224,.35), transparent 60%);
   }
   @media (max-width:860px){ .xp-inner{ grid-template-columns:1fr; padding:38px 26px; } }
   .xp-inner > *{ position:relative; z-index:1; }
@@ -542,7 +570,7 @@
     display:flex; align-items:center; justify-content:center; margin-bottom:16px;
   }
   .why-card h3{ font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.005em; }
-  .why-card p{ font-size:13.8px; color:var(--body); margin:0; }
+  .why-card p{ font-size:15px; color:var(--body); margin:0; }
 
   .why-cta{ display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:20px 32px; margin-top:56px; }
 
@@ -553,12 +581,21 @@
   @media (max-width:960px){ .contact-grid{ grid-template-columns:1fr; gap:56px; } }
   .contact-copy h2{ font-family:var(--serif); font-weight:400; font-size:clamp(38px,4.4vw,58px); line-height:1.02; letter-spacing:-.01em; margin:0 0 24px; }
   .contact-intro{ margin:0 0 48px; max-width:44ch; font-size:17px; color:var(--ink-soft); }
-  .next-steps{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line-dk); }
-  .next-steps li{ display:grid; grid-template-columns:44px 1fr; gap:4px 12px; padding:20px 0; border-bottom:1px solid var(--line-dk); }
-  .next-steps .n{ grid-row:span 2; font-family:var(--mono); font-size:12px; color:var(--ink-faint); padding-top:3px; transition:color .24s; }
+  .next-steps{ position:relative; list-style:none; margin:0; padding:0; }
+  .next-steps::before{
+    content:""; position:absolute; left:5px; top:24px; bottom:32px; width:1.5px; background:var(--indigo-soft);
+    transform:scaleY(0); transform-origin:top; transition:transform .6s cubic-bezier(.2,.7,.2,1) .2s;
+  }
+  .in .next-steps::before{ transform:none; }
+  .next-steps li{ position:relative; display:grid; grid-template-columns:32px 1fr; gap:4px 0; padding:16px 0; }
+  .next-steps li::before{
+    content:""; grid-row:span 2; position:relative; z-index:1; margin-top:5px;
+    width:12px; height:12px; box-sizing:border-box; border-radius:50%; border:1.5px solid var(--indigo-soft); background:var(--bg);
+    transition:background .24s;
+  }
+  .next-steps li:last-child::before, .next-steps li.is-done::before{ background:var(--indigo-soft); }
   .next-steps strong{ font-size:16px; font-weight:600; color:var(--paper); }
   .next-steps .d{ font-size:14px; color:var(--ink-soft); }
-  .next-steps li.is-done .n{ color:var(--signal); }
   .contact-alt{ display:flex; flex-wrap:wrap; gap:10px 28px; margin:36px 0 0; font-size:14px; }
   .contact-alt a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px solid rgba(246,244,239,.25); padding-bottom:1px; transition:color .24s, border-color .24s; }
   .contact-alt a:hover{ color:var(--paper); border-color:var(--paper); }
@@ -606,6 +643,9 @@
   footer nav{ display:flex; gap:22px; flex-wrap:wrap; }
   footer nav a{ font-size:13.5px; color:var(--ink-faint); text-decoration:none; }
   footer nav a:hover{ color:#fff; }
+  .footer-legal{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin:28px 0 0; font-size:13px; }
+  .footer-legal a{ color:var(--ink-soft); text-decoration:none; }
+  .footer-legal a:hover{ color:#fff; }
   .footer-fine{ font-family:var(--mono); font-size:11.5px; margin-top:20px; color:var(--ink-faint); text-align:center; }
 
   @media (max-width:640px){
@@ -614,7 +654,11 @@
     .contact{ padding:76px 0 88px; }
   }
 
-  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; scroll-behavior:auto !important; animation:none !important; } }
+  @media (prefers-reduced-motion:reduce){
+    *, *::before, *::after{ transition:none !important; scroll-behavior:auto !important; animation:none !important; }
+    .thread::before, .thread li::before, .path-steps::before, .path-steps li::before, .next-steps::before{ transform:none !important; }
+    .paths-junction::before{ clip-path:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -630,7 +674,6 @@
       <li><a href="#about">About</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#tech">Technology</a></li>
-      <li><a href="#xp">SUBUL XP</a></li>
       <li><a href="#contact" class="nav-cta">Talk to the team</a></li>
       <li><a href="../index.html" class="lang-switch">FR</a></li>
     </ul>
@@ -641,7 +684,6 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-cols" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy" data-reveal>
         <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span>SUBUL Jobs · For tech teams</p>
@@ -651,11 +693,12 @@
           <div class="hero-choice"><span class="hero-choice-label">I'm hiring</span><a href="#contact" class="btn btn-light btn-swap"><span class="swap"><span>Get verified profiles</span><span aria-hidden="true">Reply within 48h</span></span><svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           <div class="hero-choice"><span class="hero-choice-label">I want to learn</span><a href="lab.html" class="btn btn-outline">Book a free lab<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
-        <ul class="hero-proof">
-          <li><strong>457</strong>labs completed</li>
-          <li><strong>150</strong>AWS &amp; Azure labs</li>
-          <li><strong>14</strong>companies engaged</li>
-        </ul>
+        <ol class="thread" aria-label="From lab to hire">
+          <li><span class="thread-stage">Labs</span><strong>150</strong>hands-on AWS &amp; Azure labs</li>
+          <li><span class="thread-stage">Talent</span><strong>320</strong>SUBUL users</li>
+          <li><span class="thread-stage">Validation</span><strong>457</strong>labs completed</li>
+          <li><span class="thread-stage">Companies</span><strong>14</strong>companies engaged</li>
+        </ol>
       </div>
       <div class="hero-visual" data-reveal aria-hidden="true">
         <div class="profile-card">
@@ -711,13 +754,9 @@
           <a href="lab.html" class="btn btn-primary">Book a free lab<svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </article>
       </div>
-      <div class="traction" data-reveal>
-        <span class="traction-label">SUBUL by the numbers</span>
-        <div class="traction-row">
-          <div class="traction-stat"><h3>320</h3><p>SUBUL users</p></div>
-          <div class="traction-stat"><h3>457</h3><p>Labs completed</p></div>
-          <div class="traction-stat"><h3>14</h3><p>Companies engaged</p></div>
-        </div>
+      <div class="paths-junction" data-reveal>
+        <p class="junction-title">The two paths meet.</p>
+        <p class="junction-text">Talent trained on SUBUL Learn meets the companies that are hiring, through SUBUL Jobs.</p>
       </div>
     </div>
   </section>
@@ -741,9 +780,9 @@
         <p>Tech companies struggle to hire job-ready AI, Cloud and Cybersecurity profiles, while many young graduates lack hands-on practice. Dev4Caustaza was founded to close that gap with a product, not with services.</p>
         <p>That product is <strong>SUBUL</strong> — a SaaS platform that trains tech talent through practice (EdTech) and connects them to hiring companies (JobTech).</p>
         <ul class="about-list">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B4401E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A team of AI, DevOps and software engineers dedicated to one product: SUBUL</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B4401E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A proprietary SaaS platform (SUBUL) to grow the Tunisian tech ecosystem</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B4401E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hands-on labs and a tech residency (SUBUL XP) to learn by building</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2AA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A team of AI, DevOps and software engineers dedicated to one product: SUBUL</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2AA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A proprietary SaaS platform (SUBUL) to grow the Tunisian tech ecosystem</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2AA8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hands-on labs and a tech residency (SUBUL XP) to learn by building</li>
         </ul>
       </div>
     </div>
@@ -838,7 +877,7 @@
     <div class="container">
       <div class="xp-inner grain" data-reveal>
         <div>
-          <span class="eyebrow" style="color:#E8A58A;">SUBUL Learn in practice</span>
+          <span class="eyebrow">SUBUL Learn in practice</span>
           <h2>SUBUL XP — a tech residency, not a training center.</h2>
           <p>Book your first hands-on lab for free: DevOps, AI &amp; Agents, Cybersecurity, Data, Full Stack or Cloud. You learn by building, guided by the Dev4Caustaza team.</p>
           <div class="xp-domains">
@@ -902,9 +941,9 @@
         <h2>Describe the role. We'll get back to you within 48h.</h2>
         <p class="contact-intro">Two minutes to tell us who you're looking for, then a conversation with the team to target the profiles that match your stack.</p>
         <ol class="next-steps">
-          <li><span class="n">01</span><strong>You describe the need</strong><span class="d">Role, seniority, stack and timeline.</span></li>
-          <li><span class="n">02</span><strong>We get back to you within 48h</strong><span class="d">A short call to refine the role.</span></li>
-          <li><span class="n">03</span><strong>You meet verified profiles</strong><span class="d">Talent whose skills have been validated in lab.</span></li>
+          <li><strong>You describe the need</strong><span class="d">Role, seniority, stack and timeline.</span></li>
+          <li><strong>We get back to you within 48h</strong><span class="d">A short call to refine the role.</span></li>
+          <li><strong>You meet verified profiles</strong><span class="d">Talent whose skills have been validated in lab.</span></li>
         </ol>
         <p class="contact-alt">
           <a href="#" id="calLink" hidden>Book a call</a>
@@ -957,6 +996,7 @@
         <a href="../index.html">Version française</a>
       </nav>
     </div>
+    <p class="footer-legal"><a href="privacy.html">Privacy policy</a><a href="terms.html">Legal notice &amp; terms</a><a href="privacy.html#cookies">Cookies</a></p>
     <p class="footer-fine">© <span id="year"></span> DEV4CAUSTAZA — CREATORS OF SUBUL · EDTECH &amp; JOBTECH · TUNISIA</p>
     <p class="footer-fine">Dev4Caustaza SUARL · RNE 1770556A · La Marsa, Tunis, Tunisia · Since 2022</p>
   </div>
@@ -977,6 +1017,8 @@ const T = {
   privacyWhatsApp: "Privacy: nothing is sent until you send the message in WhatsApp (a Meta service). Your details are only used to get back to you about this hire.",
   privacyEndpoint: "Privacy: your details go to the Dev4Caustaza team and are only used to get back to you about this hire.",
   privacyRights: "To access or delete them:",
+  privacyLink: "Privacy policy",
+  privacyHref: "privacy.html",
   sending: "Sending…",
   error: "Sending failed. Try again or email us at ",
   doneSentTitle: "Request received.",
@@ -1028,7 +1070,10 @@ const cfPrivacy = document.getElementById("cfPrivacy");
 const privacyMail = document.createElement("a");
 privacyMail.href = "mailto:" + EMAIL;
 privacyMail.textContent = EMAIL;
-cfPrivacy.append((LEAD_ENDPOINT ? T.privacyEndpoint : T.privacyWhatsApp) + " " + T.privacyRights + " ", privacyMail, ".");
+const privacyPolicy = document.createElement("a");
+privacyPolicy.href = T.privacyHref;
+privacyPolicy.textContent = T.privacyLink;
+cfPrivacy.append((LEAD_ENDPOINT ? T.privacyEndpoint : T.privacyWhatsApp) + " " + T.privacyRights + " ", privacyMail, ". ", privacyPolicy, ".");
 
 function showDone(title, text, link){
   cf.hidden = true;

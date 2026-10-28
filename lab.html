@@ -26,9 +26,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://dev4caustaza.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/geist-latin-gyByhwUx.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-serif-latin-jizBRFtN.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 
 <style>
   :root{
@@ -36,8 +36,8 @@
     --paper:     #F6F4EF;
     --card:      #FFFFFF;
     --title:     #0E0D12;
-    --body:      #5E5A52;
-    --label:     #6F6A61;
+    --body:      #4A463F;
+    --label:     #5E5A52;
     --line:      #DDD8CD;
     --purple:    #5B3EE0;
     --purple-dk: #3D2AA8;
@@ -69,7 +69,7 @@
     position:absolute;
     top:26px; right:-9px; bottom:26px;
     width:9px;
-    background:var(--clay);
+    background:var(--purple-dk);
     border-radius:0 4px 4px 0;
   }
   @media (max-width:600px){ .wrap::after{ right:-6px; width:6px; } }
@@ -91,7 +91,7 @@
     letter-spacing:-.01em;
     line-height:1;
     margin:0 0 10px;
-    color:var(--clay);
+    color:var(--purple-dk);
   }
   .sub{ margin:0; color:var(--body); font-size:15.5px; }
 
@@ -215,7 +215,7 @@
   }
   button:hover:not(:disabled){ background:#2F2085; }
   button:active:not(:disabled){ transform:translateY(1px); }
-  button:focus-visible{ outline:3px solid var(--clay); outline-offset:2px; }
+  button:focus-visible{ outline:3px solid var(--purple); outline-offset:2px; }
   button:disabled{ opacity:.55; cursor:progress; }
 
   .fine{ margin:14px 0 0; text-align:center; font-size:12.5px; color:var(--label); }
@@ -237,10 +237,10 @@
   }
   .step-dot.active .dot-num{ background:var(--purple-dk); border-color:var(--purple-dk); color:#fff; }
   .step-dot.active .dot-label{ color:var(--purple-dk); }
-  .step-dot.done .dot-num{ background:var(--clay); border-color:var(--clay); color:#fff; }
-  .step-dot.done .dot-label{ color:var(--clay); }
+  .step-dot.done .dot-num{ background:var(--purple); border-color:var(--purple); color:#fff; }
+  .step-dot.done .dot-label{ color:var(--purple); }
   .step-line{ flex:1; height:2px; background:var(--line); margin:14px 6px 0; transition:background .18s; }
-  .step-line.done{ background:var(--clay); }
+  .step-line.done{ background:var(--purple); }
   @media (max-width:480px){ .step-dot .dot-label{ display:none; } }
 
   .step{ display:none; }
@@ -264,7 +264,11 @@
   .help{ margin:8px 0 0; font-size:13px; color:var(--label); }
   .privacy{ margin:0 0 22px; padding:14px 0 0; border-top:1px solid var(--line); font-size:12.5px; line-height:1.55; color:var(--label); }
 
-  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+  .legal{ margin:20px 0 0; text-align:center; font-size:12.5px; }
+  .legal a{ color:rgba(246,244,239,.8); text-underline-offset:2px; margin:0 10px; }
+  .legal a:hover{ color:#fff; }
+
+  @media (prefers-reduced-motion:reduce){ *, *::before, *::after{ transition:none !important; animation:none !important; } }
 </style>
 </head>
 <body>
@@ -334,7 +338,7 @@
           <p class="err" id="e-whatsapp">Indique un numéro WhatsApp joignable.</p>
         </div>
 
-        <p class="privacy">Confidentialité&nbsp;: tes coordonnées servent uniquement à organiser ton lab et à te recontacter. Le message passe par WhatsApp (service de Meta). Pour accéder à tes données ou les faire supprimer&nbsp;: <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>.</p>
+        <p class="privacy">Confidentialité&nbsp;: tes coordonnées servent uniquement à organiser ton lab et à te recontacter. Le message passe par WhatsApp (service de Meta). Pour accéder à tes données ou les faire supprimer&nbsp;: <a class="mail-link" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a>. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
 
         <div class="nav">
           <button type="button" class="btn-next" data-next>Suivant</button>
@@ -414,6 +418,7 @@
 
     </form>
   </div>
+  <p class="legal"><a href="confidentialite.html">Politique de confidentialité</a><a href="conditions.html">Mentions légales &amp; conditions</a></p>
 </div>
 
 <script>
