@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — Dev4Caustaza</title>
+<meta name="robots" content="noindex">
+<!-- GitHub Pages serves this file for every missing path, so all URLs are root-absolute. -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preload" href="/fonts/geist-latin-gyByhwUx.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+  :root{
+    --bg:#0E0D12; --ink:#F6F4EF; --ink-soft:#C9C4BA; --ink-faint:#9A958B; --line-dk:#2A2732;
+    --indigo-soft:#B9AEF5;
+    --sans:"Geist", system-ui, sans-serif; --serif:"Instrument Serif", Georgia, serif; --mono:"Geist Mono", ui-monospace, monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; min-height:100vh; display:flex; flex-direction:column; background:var(--bg); color:var(--ink); font-family:var(--sans); font-synthesis-weight:none; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a:focus-visible{ outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
+  .bar{ width:100%; max-width:760px; margin:0 auto; padding:16px 24px; }
+  .home{ display:inline-flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:700; font-size:15px; }
+  main{ flex:1; width:100%; max-width:760px; margin:0 auto; padding:72px 24px 88px; }
+  .eyebrow{ font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--indigo-soft); margin:0 0 20px; }
+  h1{ font-family:var(--serif); font-weight:400; font-size:clamp(44px,7vw,72px); line-height:1.02; letter-spacing:-.01em; margin:0 0 20px; }
+  p{ margin:0 0 32px; max-width:46ch; font-size:17px; color:var(--ink-soft); }
+  /* a thread with its middle stage missing */
+  .gap{ position:relative; display:flex; justify-content:space-between; max-width:320px; margin:0 0 48px; }
+  .gap::before{ content:""; position:absolute; left:6px; right:6px; top:50%; border-top:1.5px dashed rgba(185,174,245,.45); }
+  .gap span{ position:relative; width:12px; height:12px; border-radius:50%; border:1.5px solid var(--indigo-soft); background:var(--bg); }
+  .gap span:nth-child(2){ border-style:dashed; border-color:var(--ink-faint); }
+  .gap span:last-child{ background:var(--indigo-soft); }
+  .links{ display:flex; flex-wrap:wrap; gap:12px; margin:0; padding:0; list-style:none; }
+  .links a{ display:inline-flex; align-items:center; min-height:48px; padding:0 22px; border-radius:4px; font-weight:600; font-size:15px; text-decoration:none; }
+  .primary{ background:var(--ink); color:var(--bg); }
+  .secondary{ border:1px solid rgba(246,244,239,.35); color:var(--ink); }
+  .en{ margin-top:64px; padding-top:32px; border-top:1px solid var(--line-dk); }
+  .en h2{ font-family:var(--serif); font-weight:400; font-size:32px; line-height:1.1; margin:0 0 12px; }
+  .en p{ margin-bottom:24px; font-size:16px; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="home" href="/"><svg width="22" height="22" viewBox="0 0 1000 1000" fill="none" aria-hidden="true"><rect width="1000" height="1000" rx="220" fill="#3D2AA8"/><g transform="translate(24,0)"><path d="M190 682.6V317.4H309.1Q368.4 317.4 412 341Q455.6 364.5 479.7 405.7Q503.7 446.8 503.7 499.8Q503.7 552.7 479.7 594.1Q455.6 635.5 412 659Q368.4 682.6 309.1 682.6ZM266 616.4H311.1Q346.8 616.4 372.8 601.9Q398.8 587.5 413.2 561.3Q427.7 535 427.7 499.8Q427.7 464 413.2 438Q398.8 412 372.8 397.8Q346.8 383.6 311.1 383.6H266Z" fill="#fff"/><path d="M645.3 682.6V604.2H483.6V540.4L640.4 317.4H721.3V540.4H777.7V604.2H721.3V682.6ZM539 567.9 524.8 540.4H645.3V376.2L664.4 382.1Z" fill="#fff"/></g></svg> Dev4Caustaza</a>
+</div>
+<main>
+  <p class="eyebrow">Erreur 404</p>
+  <h1>Cette page n'existe pas.</h1>
+  <p>Le lien est peut-être ancien ou mal saisi. Reprenez depuis l'accueil, ou écrivez-nous si vous cherchiez quelque chose de précis.</p>
+  <div class="gap" aria-hidden="true"><span></span><span></span><span></span></div>
+  <ul class="links">
+    <li><a class="primary" href="/">Retour à l'accueil</a></li>
+    <li><a class="secondary" href="/lab.html">Réserver un lab gratuit</a></li>
+    <li><a class="secondary" href="mailto:contact@dev4caustaza.com">contact@dev4caustaza.com</a></li>
+  </ul>
+  <section class="en" lang="en" aria-labelledby="en-title">
+    <h2 id="en-title">This page doesn't exist.</h2>
+    <p>The link may be old or mistyped. Start again from the home page.</p>
+    <ul class="links">
+      <li><a class="secondary" href="/en/">English home page</a></li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
