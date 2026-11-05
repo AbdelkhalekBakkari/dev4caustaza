@@ -2,7 +2,15 @@
 
 Site vitrine de Dev4Caustaza (Tunisie) — Intelligence Artificielle, Cloud
 Computing et Cybersécurité, créateurs de **SUBUL**, la plateforme SaaS
-EdTech &amp; JobTech.
+EdTech &amp; JobTech. En ligne sur **[dev4caustaza.com](https://dev4caustaza.com)**.
+
+![Page d'accueil de dev4caustaza.com](.github/readme/home-fr.png)
+
+> **English** — Company site for Dev4Caustaza (Tunisia), the team behind
+> SUBUL: hands-on AWS &amp; Azure labs that validate tech skills, and a hiring
+> path that connects that talent with companies. Plain HTML, CSS and
+> JavaScript with no build step, self-hosted fonts and no cookies, deployed
+> to GitHub Pages on every push to `main`. English pages live in `en/`.
 
 - `index.html` — page d'accueil : deux parcours (je recrute / je veux apprendre),
   à propos, équipe, technologie, SUBUL XP, formulaire entreprises
@@ -33,3 +41,9 @@ Et dans `lab.html` et `en/lab.html` :
 - `WHATSAPP` — numéro qui reçoit les demandes de lab.
 - `EMAIL` — adresse proposée aux candidat·es sans WhatsApp.
 - `ENDPOINT` — URL qui reçoit une copie JSON de chaque demande (facultatif).
+
+## Développement
+
+Aucune dépendance ni étape de build : ouvrir les pages via un serveur local,
+par exemple `python3 -m http.server`, puis http://localhost:8000. Chaque push
+sur `main` publie le site via `.github/workflows/pages.yml`.
